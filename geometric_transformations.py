@@ -8,6 +8,7 @@ from random import sample
 from matplotlib import pyplot as plt
 
 def shear(points,shearX):
+    """Function to shear an array to 2-D points"""
     points_ = points.reshape(-1,2)
     shear_matrix = np.array([[1,0],[shearX,1]])
     new_points = points_.dot(shear_matrix)
@@ -15,11 +16,13 @@ def shear(points,shearX):
     return new_points
 
 def get_orthogonal_angles(nrows,ncols):
+    """Function generate an array of angles that are orthogonal"""
     angles = np.random.uniform(size=(nrows,ncols),low=-1,high=1)
     angles_o = scipy.linalg.orth(angles)
     return angles_o
 
 def findAngle(posA, posB):
+    """Function to find the angle (wrt x-axis) of the line joining points posA and posB"""
     aX, aY = posA
     bX, bY = posB
     m = (bY-aY)/(bX-aX)
@@ -27,6 +30,7 @@ def findAngle(posA, posB):
     return angle
 
 def rotate(pointsToRot, angle, contourPosition):
+    """Function to rotate an array to 2-D points about the point contourPosition"""
     if type(pointsToRot)==list:
         pointsToRot = np.array(pointsToRot)
     nPoints = len(pointsToRot)

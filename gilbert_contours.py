@@ -13,39 +13,45 @@ from psychopy_utils import *
 """Code to create the snakes dataset for association fields"""
 
 def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.3, length=3, contourPosition=(10,20)):
+    """Function to draw the main contour line segments."""
+
     includeContour = np.zeros((positions.shape[0],positions.shape[1]))
+    #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     includeContour = fillIncludeContour(includeContour, contourPosition, length=length)
-    print contourPosition
     if shearAngle!=0:
-        positions_ = shear(positions,shearX=shearAngle)
+        positions_ = shear(positions,shearX=shearAngle) #Shearing to adjust intra-contour
     else:
-        positions_ = positions
+        positions_ = positions #Shear=0 implies no shearing
     oriContour = -1
-    ori_orth = np.random.uniform(-180,180)
+    ori_orth = np.random.uniform(-180,180) #Choose random starting angle for distractor line segments
     for i in range(positions.shape[0]):
         for j in range(positions.shape[1]):
+            #Main loop, align elements along the contour and randomly orient other elements in contour grid
             pos = positions_[i,j,:]
             if circle.contains(pos,units='deg'):
                 if includeContour[i,j]==1:
-                    if color:
-                        lineColor=(1,-1,-1)
+                    if color: #Coloring line segments along the generated contour
+                        if i==contourPosition[0] and j==contourPosition[1]: #Contour center with different color
+                            lineColor=(-1,1,-1)
+                        else:
+                            lineColor=(1,-1,-1) #Non-center elements of contour with different color
                     else:
-                        lineColor=(1,1,1)
-                    if oriContour==-1:
-                        oriContour = findAngle(pos,positions_[contourPosition[0],contourPosition[1],:])
-		    if shearAngle>0:
+                        lineColor=(1,1,1) #No color difference between contours and distractors
+                    #Found the following orientations to work best for aligning contours by trial-and-error
+                    #TODO: Compute angles based on shear more systematically
+                    if shearAngle>0:
                         ori = (shearAngle*15.9)
                     else:
                         ori=-np.abs(shearAngle)*45.9
                 else:
                     lineColor=(1,1,1)
-		    alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90)
-      		    minTheta, maxTheta = min(alpha,beta), max(alpha,beta)
-		    ori_orth = np.random.uniform(minTheta, maxTheta)
+                    alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
+                    minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
+                    ori_orth = np.random.uniform(minTheta, maxTheta)
                     if ori_orth<0:
-                        ori_orth += 360
+                        ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                     ori = ori_orth
-                ln = visual.Line(win, pos=pos, size=size, ori=ori,lineColor=lineColor)
+                draw_line(win, pos=pos, size=size, ori=ori,lineColor=lineColor)
                 ln.draw()
 
 def main():
