@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 from gilbert_utils import *
 from geometric_transformations import *
 from psychopy_utils import *
+
 """Code to recreate the snakes dataset for association fields
    Testing multiple tricks to generate stimuli that are highly similar to https://www.physiology.org/doi/pdf/10.1152/jn.00289.2002"""
 
