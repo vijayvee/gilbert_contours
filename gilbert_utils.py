@@ -30,8 +30,19 @@ def get_eccentricity_bounds(curr_radius, gilb_radius, gilb_min_ecc, gilb_max_ecc
     max_ecc = gilb_max_ecc*curr_radius/gilb_radius
     return min_ecc, max_ecc
 
-def fillIncludeContour(includeContour, pos, length=5, a_contour=0):
+def getContourOrientation(shearAngle):
+    """Function to obtain angle of orientation for contour line segments
+       Found the following orientations to work best for aligning contours by trial-and-error
+       TODO: Compute angles based on shear more systematically"""
+    if shearAngle>0:
+        ori = (shearAngle*15.9)
+    else:
+        ori=-np.abs(shearAngle)*45.9
+    return ori
+
+def fillIncludeContour(nRows,nCols,pos,length=5,a_contour=0):
     """Function to compute positions of contour line segments in contour grid"""
+    includeContour = np.zeros((nRows,nCols))
     includeContour[pos[0],pos[1]] = 1
     bounds = (length+1)/2
     pointsToRot = [[pos[0]+i,pos[1]] for i in range(-bounds,bounds)]

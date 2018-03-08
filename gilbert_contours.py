@@ -12,17 +12,23 @@ from psychopy_utils import *
 
 """Code to create the snakes dataset for association fields"""
 
+def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
+    #Include contours by relaxing the tangential contour path condition
+    includeContour = np.zeros((nRows,nCols))
+    includeContour[pos[0],pos[1]] = 1
+    bounds = (length+1)/2
+    for i in range(1,bounds):
+        includeContour[pos[0]+i,pos[1]+i] = 1
+        includeContour[pos[0]-i,pos[1]-i] = 1
+    return includeContour
+
+
 def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.3, length=3, contourPosition=(10,20)):
     """Function to draw the main contour line segments."""
-
-    includeContour = np.zeros((positions.shape[0],positions.shape[1]))
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
-    includeContour = fillIncludeContour(includeContour, contourPosition, length=length)
-    if shearAngle!=0:
-        positions_ = shear(positions,shearX=shearAngle) #Shearing to adjust intra-contour
-    else:
-        positions_ = positions #Shear=0 implies no shearing
-    oriContour = -1
+    includeContour = fillIncludeContour_nontan(nRows=positions.shape[0], nCols=positions.shape[1],pos=contourPosition, length=length)
+    positions_ = shear(positions,shearX=shearAngle) #Shearing to adjust intra-contour
+    oriContour,contour = -1,False
     ori_orth = np.random.uniform(-180,180) #Choose random starting angle for distractor line segments
     for i in range(positions.shape[0]):
         for j in range(positions.shape[1]):
@@ -30,29 +36,18 @@ def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.
             pos = positions_[i,j,:]
             if circle.contains(pos,units='deg'):
                 if includeContour[i,j]==1:
-                    if color: #Coloring line segments along the generated contour
-                        if i==contourPosition[0] and j==contourPosition[1]: #Contour center with different color
-                            lineColor=(-1,1,-1)
-                        else:
-                            lineColor=(1,-1,-1) #Non-center elements of contour with different color
-                    else:
-                        lineColor=(1,1,1) #No color difference between contours and distractors
-                    #Found the following orientations to work best for aligning contours by trial-and-error
-                    #TODO: Compute angles based on shear more systematically
-                    if shearAngle>0:
-                        ori = (shearAngle*15.9)
-                    else:
-                        ori=-np.abs(shearAngle)*45.9
+                    ori = getContourOrientation(shearAngle)
+                    contour=True
                 else:
-                    lineColor=(1,1,1)
                     alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                     minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
                     ori_orth = np.random.uniform(minTheta, maxTheta)
                     if ori_orth<0:
                         ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                     ori = ori_orth
-                draw_line(win, pos=pos, size=size, ori=ori,lineColor=lineColor)
-                ln.draw()
+                    contour=False
+                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori)
+
 
 def main():
     contour_path = '/media/data_cifs/image_datasets/contours_gilbert_600'
@@ -63,9 +58,9 @@ def main():
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius, gilb_radius=43.8/2, gilb_min_ecc=3.4, gilb_max_ecc=6.4)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=32)
-    for shearAngle in tqdm([0],total=1,desc='Generating multiple spacing contours'): #, 0.7, 1.3]:
+    for shearAngle in tqdm([-1.3],total=1,desc='Generating multiple spacing contours'): #, 0.7, 1.3]:
         print "Shear angle: ", shearAngle
-	for length in tqdm([1],total=1, desc='Generating multiple length contours'):
+	for length in tqdm([21],total=1, desc='Generating multiple length contours'):
             for _ in tqdm(range(200000),desc='Generating contours for length %s'%(length)):
                 curr_ecc = np.random.uniform(min_ecc, max_ecc)
                 ecc_lines = curr_ecc*linesPerDegree
@@ -76,7 +71,7 @@ def main():
                 circle = draw_circle(win=win,radius=8)
                 positions = [(j,i) for i in np.arange(-15,15,0.5) for j in np.arange(-15,15,0.5)]
                 positions = np.array(positions).reshape((60,60,2))
-                draw_lines_row(win, circle, positions,color=False,
+                draw_lines_row(win, circle, positions,color=True,
                                    length=length,shearAngle=shearAngle,
                                    contourPosition=pos)
                 draw_fixation(win, 0, 0)

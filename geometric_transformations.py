@@ -9,6 +9,8 @@ from matplotlib import pyplot as plt
 
 def shear(points,shearX):
     """Function to shear an array to 2-D points"""
+    if shearX==0:
+        return points
     points_ = points.reshape(-1,2)
     shear_matrix = np.array([[1,0],[shearX,1]])
     new_points = points_.dot(shear_matrix)
