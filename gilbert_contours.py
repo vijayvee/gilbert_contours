@@ -23,12 +23,15 @@ def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     return includeContour
 
 
-def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.3, length=3, contourPosition=(10,20)):
+def draw_lines_row(win, circle, positions, color=False, size=0.07, shearAngle=0.3, length=3, contourPosition=(10,20)):
     """Function to draw the main contour line segments."""
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
-    includeContour = fillIncludeContour_nontan(nRows=positions.shape[0], nCols=positions.shape[1],pos=contourPosition, length=length)
+    print positions.shape[0], positions.shape[1]
+    includeContour = fillIncludeContour_nontan(nRows=positions.shape[0],
+                                               nCols=positions.shape[1],
+                                               pos=contourPosition, length=length)
     positions_ = shear(positions,shearX=shearAngle) #Shearing to adjust intra-contour
-    oriContour,contour = -1,False
+    oriContour,contour,center = -1,False,False
     ori_orth = np.random.uniform(-180,180) #Choose random starting angle for distractor line segments
     for i in range(positions.shape[0]):
         for j in range(positions.shape[1]):
@@ -38,6 +41,9 @@ def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.
                 if includeContour[i,j]==1:
                     ori = getContourOrientation(shearAngle)
                     contour=True
+                    print contourPosition,i,j
+                    if np.all(contourPosition==(i,j)):
+                        center=True
                 else:
                     alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                     minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
@@ -46,37 +52,40 @@ def draw_lines_row(win, circle, positions, color=False, size=0.13, shearAngle=0.
                         ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                     ori = ori_orth
                     contour=False
-                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori)
+                    center=False
+                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center)
 
 
 def main():
-    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_600'
+    contour_path = '.'
     make_contours_dir(contour_path)
-    win = create_window([600,600],monitor='testMonitor')
-    curr_radius=8
+    win = create_window([256,256],monitor='testMonitor')
+    curr_radius=4
     print "Created window"
-    min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius, gilb_radius=43.8/2, gilb_min_ecc=3.4, gilb_max_ecc=6.4)
+    min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius,
+                                               gilb_radius=43.8/2, gilb_min_ecc=2.4,
+                                               gilb_max_ecc=8.4)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
-    linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=32)
-    for shearAngle in tqdm([-1.3],total=1,desc='Generating multiple spacing contours'): #, 0.7, 1.3]:
+    nLinesOnRadius=curr_radius*8
+    linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=nLinesOnRadius)
+    for shearAngle in tqdm([-1.3, -0.7, 0],total=1,desc='Generating multiple spacing contours'):
         print "Shear angle: ", shearAngle
-	for length in tqdm([21],total=1, desc='Generating multiple length contours'):
-            for _ in tqdm(range(200000),desc='Generating contours for length %s'%(length)):
+	for length in tqdm([15],total=1, desc='Generating multiple length contours'):
+            for _ in tqdm(range(2),desc='Generating contours for length %s'%(length)):
                 curr_ecc = np.random.uniform(min_ecc, max_ecc)
                 ecc_lines = curr_ecc*linesPerDegree
                 a_contour = np.random.uniform(0,np.pi/2)
                 pos = get_contour_center(a_contour, curr_ecc)
-                pos = 30+int(linesPerDegree*(pos[1])), 30-int(linesPerDegree*(pos[0]))
+                pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
                 print "Current eccentricity: %s, current angle: %s, current center contour: (%s,%s)" %(curr_ecc, a_contour*180/np.pi, pos[0],pos[1])
-                circle = draw_circle(win=win,radius=8)
-                positions = [(j,i) for i in np.arange(-15,15,0.5) for j in np.arange(-15,15,0.5)]
-                positions = np.array(positions).reshape((60,60,2))
+                circle = draw_circle(win=win,radius=curr_radius)
+                positions = [(j,i) for i in np.arange(-curr_radius*2,curr_radius*2,0.25) for j in np.arange(-curr_radius*2,curr_radius*2,0.25)]
+                positions = np.array(positions).reshape((curr_radius*16,curr_radius*16,2))
                 draw_lines_row(win, circle, positions,color=True,
                                    length=length,shearAngle=shearAngle,
                                    contourPosition=pos)
                 draw_fixation(win, 0, 0)
                 win.update()
-                import ipdb; ipdb.set_trace()
                 win.getMovieFrame()
                 win.saveMovieFrames("%s/sample_shear_%s_length%s_eccentricity_%s.png"
                                             %(contour_path,shearAngle,length,curr_ecc))

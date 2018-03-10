@@ -14,7 +14,7 @@ def create_window(window_size, monitor):
                           units="deg")
     return mywin
 
-def draw_line(win, pos, contour, color, size=3., ori=0):
+def draw_line(win, pos, contour, color, size=3., ori=0, center=False):
     """Function to draw a line"""
     lineColor=(1,1,1)
     if color: #Coloring line segments along the generated contour
@@ -22,6 +22,8 @@ def draw_line(win, pos, contour, color, size=3., ori=0):
             lineColor=(1,-1,-1) #Plot elements of contour with different color
     else:
         lineColor=(1,1,1) #No color difference between contours and distractors
+    if center:
+        lineColor=(-1,1,-1)
     ln = visual.Line(win=win,pos=pos,size=size,ori=ori,lineColor=lineColor)
     ln.draw()
 

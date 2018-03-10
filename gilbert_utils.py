@@ -17,6 +17,7 @@ def make_contours_dir(contour_path):
 def get_contour_center(a_contour, curr_radius):
     """Get position of the center of generated contour"""
     rX, rY = curr_radius*np.cos(a_contour), curr_radius*np.sin(a_contour)
+    print rX, rY, curr_radius, a_contour
     return rX, rY
 
 def deg2lines(radiusDegrees, nLinesOnRadius):

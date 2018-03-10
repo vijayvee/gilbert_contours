@@ -55,7 +55,7 @@ def main():
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius, gilb_radius=43.8/2, gilb_min_ecc=3.4, gilb_max_ecc=6.4)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=32)
-    for shearAngle in tqdm([0],total=1,desc='Generating multiple spacing contours'): #, 0.7, 1.3]:
+    for shearAngle in tqdm([-1.3, -0.7, 0],total=1,desc='Generating multiple spacing contours'): #, 0.7, 1.3]:
         print "Shear angle: ", shearAngle
 	for length in tqdm([21,18,15],total=3, desc='Generating multiple length contours'):
             for _ in tqdm(range(20),desc='Generating contours for length %s'%(length)):
