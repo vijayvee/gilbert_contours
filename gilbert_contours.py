@@ -15,6 +15,8 @@ from psychopy_utils import *
 def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     #Include contours by relaxing the tangential contour path condition
     includeContour = np.zeros((nRows,nCols))
+    if length == 0:
+        return includeContour
     includeContour[pos[0],pos[1]] = 1
     bounds = (length+1)/2
     for i in range(1,bounds):
@@ -23,10 +25,9 @@ def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     return includeContour
 
 
-def draw_lines_row(win, circle, positions, color=False, size=0.07, shearAngle=0.3, length=3, contourPosition=(10,20)):
+def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3, length=3, contourPosition=(10,20)):
     """Function to draw the main contour line segments."""
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
-    print positions.shape[0], positions.shape[1]
     includeContour = fillIncludeContour_nontan(nRows=positions.shape[0],
                                                nCols=positions.shape[1],
                                                pos=contourPosition, length=length)
@@ -41,7 +42,6 @@ def draw_lines_row(win, circle, positions, color=False, size=0.07, shearAngle=0.
                 if includeContour[i,j]==1:
                     ori = getContourOrientation(shearAngle)
                     contour=True
-                    print contourPosition,i,j
                     if np.all(contourPosition==(i,j)):
                         center=True
                 else:
@@ -53,11 +53,12 @@ def draw_lines_row(win, circle, positions, color=False, size=0.07, shearAngle=0.
                     ori = ori_orth
                     contour=False
                     center=False
+                    ori=np.random.uniform(-180,180)
                 draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center)
 
 
 def main():
-    contour_path = '.'
+    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_256_length_0'
     make_contours_dir(contour_path)
     win = create_window([256,256],monitor='testMonitor')
     curr_radius=4
@@ -68,26 +69,26 @@ def main():
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     nLinesOnRadius=curr_radius*8
     linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=nLinesOnRadius)
-    for shearAngle in tqdm([-1.3, -0.7, 0],total=1,desc='Generating multiple spacing contours'):
+    for shearAngle in tqdm([0.7],total=1,desc='Generating multiple spacing contours'):
+        shearAngle = np.random.uniform(low=-0.7, high=0.7)
         print "Shear angle: ", shearAngle
-	for length in tqdm([15],total=1, desc='Generating multiple length contours'):
-            for _ in tqdm(range(2),desc='Generating contours for length %s'%(length)):
+	for length in tqdm([0],total=1, desc='Generating multiple length contours'):
+            for _ in tqdm(range(140000),desc='Generating contours for length %s'%(length)):
+                shearAngle = np.random.uniform(low=-0.7, high=0.7)
                 curr_ecc = np.random.uniform(min_ecc, max_ecc)
                 ecc_lines = curr_ecc*linesPerDegree
                 a_contour = np.random.uniform(0,np.pi/2)
                 pos = get_contour_center(a_contour, curr_ecc)
                 pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-                print "Current eccentricity: %s, current angle: %s, current center contour: (%s,%s)" %(curr_ecc, a_contour*180/np.pi, pos[0],pos[1])
                 circle = draw_circle(win=win,radius=curr_radius)
                 positions = [(j,i) for i in np.arange(-curr_radius*2,curr_radius*2,0.25) for j in np.arange(-curr_radius*2,curr_radius*2,0.25)]
                 positions = np.array(positions).reshape((curr_radius*16,curr_radius*16,2))
-                draw_lines_row(win, circle, positions,color=True,
+                draw_lines_row(win, circle, positions,color=False,
                                    length=length,shearAngle=shearAngle,
                                    contourPosition=pos)
-                draw_fixation(win, 0, 0)
                 win.update()
                 win.getMovieFrame()
-                win.saveMovieFrames("%s/sample_shear_%s_length%s_eccentricity_%s.png"
+                win.saveMovieFrames("%s/sample_256_shear_%s_length%s_eccentricity_%s.png"
                                             %(contour_path,shearAngle,length,curr_ecc))
     win.close()
 
