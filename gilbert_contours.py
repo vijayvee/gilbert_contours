@@ -58,10 +58,10 @@ def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3
 
 
 def main():
-    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_256_length_0'
+    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_256_rotations'
     make_contours_dir(contour_path)
-    win = create_window([256,256],monitor='testMonitor')
     curr_radius=4
+    win = create_window([256,256],monitor='testMonitor')
     print "Created window"
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius,
                                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
@@ -73,24 +73,26 @@ def main():
         shearAngle = np.random.uniform(low=-0.7, high=0.7)
         print "Shear angle: ", shearAngle
 	for length in tqdm([0],total=1, desc='Generating multiple length contours'):
-            for _ in tqdm(range(140000),desc='Generating contours for length %s'%(length)):
+            for _ in tqdm(range(200000),desc='Generating contours for length %s'%(length)):
+                win.viewOri = np.random.uniform(0,360)
                 shearAngle = np.random.uniform(low=-0.7, high=0.7)
                 curr_ecc = np.random.uniform(min_ecc, max_ecc)
                 ecc_lines = curr_ecc*linesPerDegree
                 a_contour = np.random.uniform(0,np.pi/2)
                 pos = get_contour_center(a_contour, curr_ecc)
                 pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-                circle = draw_circle(win=win,radius=curr_radius)
+                circle = draw_circle(win=win,radius=4)
                 positions = [(j,i) for i in np.arange(-curr_radius*2,curr_radius*2,0.25) for j in np.arange(-curr_radius*2,curr_radius*2,0.25)]
                 positions = np.array(positions).reshape((curr_radius*16,curr_radius*16,2))
                 draw_lines_row(win, circle, positions,color=False,
                                    length=length,shearAngle=shearAngle,
                                    contourPosition=pos)
-                win.update()
+
+                win.flip()
                 win.getMovieFrame()
                 win.saveMovieFrames("%s/sample_256_shear_%s_length%s_eccentricity_%s.png"
                                             %(contour_path,shearAngle,length,curr_ecc))
-    win.close()
+        win.close()
 
 if __name__=="__main__":
     main()
