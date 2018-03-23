@@ -14,7 +14,7 @@ def create_window(window_size, monitor,viewOri=0):
                           units="deg")
     return mywin
 
-def draw_line(win, pos, contour, color, size=3., ori=0, center=False):
+def draw_line(win, pos, contour, color, size=3., contrast=1.0, ori=0, center=False):
     """Function to draw a line"""
     lineColor=(1,1,1)
     if color: #Coloring line segments along the generated contour
@@ -24,8 +24,9 @@ def draw_line(win, pos, contour, color, size=3., ori=0, center=False):
         lineColor=(1,1,1) #No color difference between contours and distractors
     #if center:
     #    lineColor=(-1,1,-1)
-    ln = visual.Line(win=win,pos=pos,size=size,ori=ori,lineColor=lineColor,interpolate=True)
+    ln = visual.Line(win=win,pos=pos,size=size,ori=ori,contrast=contrast,lineColor=lineColor,interpolate=True)
     ln.draw()
+    return ln
 
 def draw_grating_stim(win, pos, size,ori=0, lineColor=(1,1,1)):
     """Function to draw a grating stimulus"""

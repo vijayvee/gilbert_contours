@@ -19,6 +19,36 @@ def get_contour_center(a_contour, curr_radius):
     rX, rY = curr_radius*np.cos(a_contour), curr_radius*np.sin(a_contour)
     return rX, rY
 
+def drawSnakes(win, circle, positions, color=True, size=0.1, length=15, contourPosition=(32,32)):
+    nRows, nCols = positions.shape[0], positions.shape[1]
+    #posX, posY = sample(range(nRows),1)[0], sample(range(nCols),1)[0]
+    prevPos = positions[contourPosition]
+    prevOri = sample(baseSnakeOri,1)[0]
+    print "Starting at ",prevPos
+    fillMap = [(i,j) for i in np.arange(-4,4,0.25)
+                     for j in np.arange(-4,4,0.25)
+                     if circle.contains((i,j))]
+    for i in range(length):
+        currOri = sample(anglePairs[prevOri],1)[0]
+        currPosPair = positionPairs[prevOri,currOri][0]
+        print currPosPair
+        currPosPair = [0.25*currPosPair[0], 0.25*currPosPair[1]]
+        currPos = prevPos[0]+currPosPair[0], prevPos[1]+currPosPair[1]
+        if circle.contains(currPos):
+            if currPos in fillMap:
+                fillMap.remove(currPos)
+            print "PrevOri:%s CurrOri:%s"%(prevOri, currOri)
+            draw_line(win, pos=currPos, contour=True, color=False, size=0.1, ori=currOri-45, center=False)
+            prevPos, prevOri = currPos, currOri
+    ori_orth = np.random.uniform(-180,180)
+    for pos in fillMap:
+        alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
+        minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
+        ori_orth = np.random.uniform(minTheta, maxTheta)
+        pos = (pos[0] + np.random.uniform(-0.1,0.1), pos[1] + np.random.uniform(-0.1,0.1))
+        draw_line(win, pos=pos, contour=False, color=False, size=0.1, ori=ori_orth, center=False)
+
+
 def deg2lines(radiusDegrees, nLinesOnRadius):
     """Convert between visual degrees to contour grid units"""
     linesPerDegree = nLinesOnRadius/radiusDegrees

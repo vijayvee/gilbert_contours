@@ -54,14 +54,14 @@ def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3
                     contour=False
                     center=False
                     ori=np.random.uniform(-180,180)
-                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center)
+                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=np.random.uniform(0,1))
 
 
 def main():
-    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_256_rotations'
+    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_400_contrast'
     make_contours_dir(contour_path)
-    curr_radius=4
-    win = create_window([256,256],monitor='testMonitor')
+    curr_radius=6
+    win = create_window([400,400],monitor='testMonitor')
     print "Created window"
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius,
                                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
@@ -81,16 +81,15 @@ def main():
                 a_contour = np.random.uniform(0,np.pi/2)
                 pos = get_contour_center(a_contour, curr_ecc)
                 pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-                circle = draw_circle(win=win,radius=4)
+                circle = draw_circle(win=win,radius=curr_radius)
                 positions = [(j,i) for i in np.arange(-curr_radius*2,curr_radius*2,0.25) for j in np.arange(-curr_radius*2,curr_radius*2,0.25)]
                 positions = np.array(positions).reshape((curr_radius*16,curr_radius*16,2))
                 draw_lines_row(win, circle, positions,color=False,
-                                   length=length,shearAngle=shearAngle,
+		length=length,shearAngle=shearAngle,
                                    contourPosition=pos)
-
                 win.flip()
                 win.getMovieFrame()
-                win.saveMovieFrames("%s/sample_256_shear_%s_length%s_eccentricity_%s.png"
+                win.saveMovieFrames("%s/sample_400_shear_%s_length%s_eccentricity_%s.png"
                                             %(contour_path,shearAngle,length,curr_ecc))
         win.close()
 
