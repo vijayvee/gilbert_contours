@@ -28,7 +28,7 @@ def draw_line(win, pos, contour, color, size=3., contrast=1.0, ori=0, center=Fal
     ln.draw()
     return ln
 
-def draw_grating_stim(win, pos, size,ori=0, lineColor=(1,1,1)):
+def draw_grating_stim(win, pos, size,ori=0, lineColor=(1,-1,-1)):
     """Function to draw a grating stimulus"""
     stim = visual.GratingStim(win=win, pos=pos, size=(size,size),
                               tex='sin', mask='cross', units='deg',

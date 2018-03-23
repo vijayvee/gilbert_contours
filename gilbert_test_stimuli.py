@@ -23,6 +23,9 @@ SHEAR_RANGE = [-0.3,0.3]
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument(
+            '--skew_slack', dest='skew_slack', type=float,
+            default=2, help='Slack positions for compensating skew? (True/False)')
+    parser.add_argument(
             '--dir', dest='contour_path',
             default=CONTOUR_PATH, help='Directory where contour images are stored')
     parser.add_argument(
@@ -83,7 +86,7 @@ def draw_lines_row(
             win, circle, positions, args,
             color=False, size=0.1,
             shearAngle=0.3, length=3,
-            contourPosition=(10,20),randomContrast=True):
+            contourPosition=(10,20),randomContrast=False):
     """Function to draw the main contour line segments."""
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     includeContour = fillIncludeContour_nontan(args=args,nRows=positions.shape[0],
@@ -130,16 +133,18 @@ def draw_lines_row(
 
 def main_drawing_loop(win, args):
     #Main loop for drawing contours
-    nLinesOnDiameter = len(np.arange(-args.curr_radius,
+    nLinesOnDiameter = len(np.arange(-args.skew_slack,
+                                    args.skew_slack,
+                                    args.global_spacing))
+    nLinesOnRadius = len(np.arange(-args.curr_radius,
                                     args.curr_radius,
                                     args.global_spacing))
-    nLinesOnRadius = nLinesOnDiameter/2
     circle = draw_circle(win=win, radius=args.curr_radius)
     linesPerDegree = deg2lines(radiusDegrees=args.curr_radius,
                                 nLinesOnRadius=nLinesOnRadius)
-    min_ecc, max_ecc = args.curr_radius/4, args.curr_radius*3/4#get_eccentricity_bounds(curr_radius=args.curr_radius,
-                                                #gilb_radius=43.8/2, gilb_min_ecc=2.4,
-                                                #gilb_max_ecc=8.4)
+    min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=args.curr_radius,
+                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
+                                gilb_max_ecc=8.4)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearLow, shearHigh = args.shear_range
 
@@ -153,11 +158,11 @@ def main_drawing_loop(win, args):
             a_contour = np.pi/4 #gilbert stimuli have only 45' snakes
             pos = get_contour_center(a_contour, curr_ecc)
             pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-            positions = [(j,i) for i in np.arange(-args.curr_radius,
-                                                    args.curr_radius,
+            positions = [(j,i) for i in np.arange(-args.skew_slack,
+                                                    args.skew_slack,
                                                     args.global_spacing)
-                               for j in np.arange(-args.curr_radius,
-                                                    args.curr_radius,
+                               for j in np.arange(-args.skew_slack,
+                                                    args.skew_slack,
                                                     args.global_spacing)]
             print "Contour center: %s,%s"%(pos)
             positions = np.array(positions).reshape((
@@ -166,7 +171,6 @@ def main_drawing_loop(win, args):
             draw_lines_row(win, circle, positions, args,
                             color=args.color,length=length,
                             shearAngle=shearAngle,size=args.paddle_length,
-                            randomContrast=args.random_contrast,
                             contourPosition=pos)
             if args.fixation_cross:
                 draw_fixation(win,0,0)
