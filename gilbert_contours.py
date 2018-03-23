@@ -2,6 +2,7 @@
 from psychopy import visual, event, monitors, core
 import numpy as np
 import scipy.linalg
+import argparse
 from tqdm import tqdm
 import os
 from random import sample
@@ -11,6 +12,14 @@ from geometric_transformations import *
 from psychopy_utils import *
 
 """Code to create the snakes dataset for association fields"""
+
+CURR_RADIUS = 4
+CONTOUR_PATH = '.'
+WINDOW_SIZE = [400,400]
+CONTOUR_LENGTHS = [15]
+N_IMAGES = 200000
+SHEAR_RANGE = [-0.7,0.7]
+
 
 def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     #Include contours by relaxing the tangential contour path condition
@@ -25,7 +34,7 @@ def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     return includeContour
 
 
-def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3, length=3, contourPosition=(10,20)):
+def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3, length=3, contourPosition=(10,20), randomContrast=True):
     """Function to draw the main contour line segments."""
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     includeContour = fillIncludeContour_nontan(nRows=positions.shape[0],
@@ -54,43 +63,66 @@ def draw_lines_row(win, circle, positions, color=False, size=0.1, shearAngle=0.3
                     contour=False
                     center=False
                     ori=np.random.uniform(-180,180)
-                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=np.random.uniform(0,1))
+                if randomContrast:
+                    contrast = np.random.uniform(0,1)
+                draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
 
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+            '--dir', dest='contour_path',
+            default=CONTOUR_PATH, help='Directory where contour images are stored')
+    parser.add_argument(
+            '--radius', dest='curr_radius', type=int,
+            default=CURR_RADIUS, help='Radius of circle for gilbert stimuli')
+    parser.add_argument(
+            '--window_size', dest='window_size', nargs='+', type=int,
+            default=WINDOW_SIZE, help='Size of stimulus window')
+    parser.add_argument(
+            '--lengths', dest='contour_lengths', nargs='+', type=int,
+            default=CONTOUR_LENGTHS, help='Lengths of contour snakes')
+    parser.add_argument(
+            '--n_images', dest='n_images', type=int,
+            default=N_IMAGES, help='Number of contour images to render')
+    parser.add_argument(
+            '--shear_range', dest='shear_range', nargs='+', type=float,
+            default=SHEAR_RANGE, help='Range of shear for stimuli')
+    args = parser.parse_args()
+    return args
 
 def main():
-    contour_path = '/media/data_cifs/image_datasets/contours_gilbert_400_contrast'
-    make_contours_dir(contour_path)
-    curr_radius=6
-    win = create_window([400,400],monitor='testMonitor')
+    args = parse_arguments()
+    shearLow, shearHigh = args.shear_range
+    make_contours_dir(args.contour_path)
+    win = create_window(args.window_size,monitor='testMonitor')
     print "Created window"
-    min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=curr_radius,
+    min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=args.curr_radius,
                                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
                                                gilb_max_ecc=8.4)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
-    nLinesOnRadius=curr_radius*8
-    linesPerDegree = deg2lines(radiusDegrees=curr_radius, nLinesOnRadius=nLinesOnRadius)
-    for shearAngle in tqdm([0.7],total=1,desc='Generating multiple spacing contours'):
-        shearAngle = np.random.uniform(low=-0.7, high=0.7)
-        print "Shear angle: ", shearAngle
-	for length in tqdm([0],total=1, desc='Generating multiple length contours'):
-            for _ in tqdm(range(200000),desc='Generating contours for length %s'%(length)):
-                win.viewOri = np.random.uniform(0,360)
-                shearAngle = np.random.uniform(low=-0.7, high=0.7)
-                curr_ecc = np.random.uniform(min_ecc, max_ecc)
-                ecc_lines = curr_ecc*linesPerDegree
-                a_contour = np.random.uniform(0,np.pi/2)
-                pos = get_contour_center(a_contour, curr_ecc)
-                pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-                circle = draw_circle(win=win,radius=curr_radius)
-                positions = [(j,i) for i in np.arange(-curr_radius*2,curr_radius*2,0.25) for j in np.arange(-curr_radius*2,curr_radius*2,0.25)]
-                positions = np.array(positions).reshape((curr_radius*16,curr_radius*16,2))
-                draw_lines_row(win, circle, positions,color=False,
-		length=length,shearAngle=shearAngle,
-                                   contourPosition=pos)
-                win.flip()
-                win.getMovieFrame()
-                win.saveMovieFrames("%s/sample_400_shear_%s_length%s_eccentricity_%s.png"
-                                            %(contour_path,shearAngle,length,curr_ecc))
+    nLinesOnRadius = args.curr_radius*8
+    linesPerDegree = deg2lines(radiusDegrees=args.curr_radius, nLinesOnRadius=nLinesOnRadius)
+    for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
+        for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
+            win.viewOri = np.random.uniform(0,360)
+            shearAngle = np.random.uniform(low=shearLow, high=shearHigh)
+            curr_ecc = np.random.uniform(min_ecc, max_ecc)
+            ecc_lines = curr_ecc*linesPerDegree
+            a_contour = np.random.uniform(0,np.pi/2)
+            pos = get_contour_center(a_contour, curr_ecc)
+            pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
+            circle = draw_circle(win=win,radius=args.curr_radius)
+            positions = [(j,i) for i in np.arange(-args.curr_radius*2,args.curr_radius*2,0.25)
+                               for j in np.arange(-args.curr_radius*2,args.curr_radius*2,0.25)]
+            positions = np.array(positions).reshape((args.curr_radius*16,args.curr_radius*16,2))
+            draw_lines_row(win, circle, positions,color=False,
+                               length=length,shearAngle=shearAngle,
+                               contourPosition=pos)
+            win.flip()
+            win.getMovieFrame()
+            win.saveMovieFrames("%s/sample_%s_shear_%s_length%s_eccentricity_%s.png"
+                                        %(args.contour_path,args.window_size[0],shearAngle,length,curr_ecc))
         win.close()
 
 if __name__=="__main__":
