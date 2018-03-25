@@ -67,7 +67,7 @@ def getContourOrientation(shearAngle):
     if shearAngle>0:
         ori = (shearAngle*15.9)
     else:
-        ori=-np.abs(shearAngle)*45.9
+        ori=-np.abs(shearAngle)*45.9 
     return ori
 
 def fillIncludeContour(nRows,nCols,pos,length=5,a_contour=0):

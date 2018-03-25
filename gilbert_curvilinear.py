@@ -47,6 +47,7 @@ def getIntercept(x, y, psychopyTheta):
     thetaRad = theta*np.pi/180
     m = np.tan(thetaRad)
     c = y - m*x
+    print theta, y, m*x
     return m,c
 
 def inflectionSnakes(win, circle, color=True, size=0.1, length=15, curr_radius=4):
@@ -57,10 +58,12 @@ def inflectionSnakes(win, circle, color=True, size=0.1, length=15, curr_radius=4
     print min_ecc, max_ecc
     posX = sample(np.arange(-max_ecc, max_ecc, 0.25),1)[0]
     length /= 2
-    positionsX = np.arange(posX-0.25*length, posX+0.25*length, 0.25)
+    positionsX = np.arange(posX-0.3*length, posX+0.3*length, 0.3)
     posY = 0
     #posY = sample(np.arange(-curr_radius, curr_radius,0.25),1)[0]
-    infl = sample(positionsX, 8)
+    infl = [positionsX[int(i)] for i in np.linspace(0,len(positionsX)-1,5)]
+    infl = infl[1:-1]
+    print infl
     prevOri = ori
     prevPos = (positionsX[0], posY)
     allLines = []
@@ -68,27 +71,26 @@ def inflectionSnakes(win, circle, color=True, size=0.1, length=15, curr_radius=4
     for posX in positionsX:
         if posX in infl:
             sign *= -1
-            ori += sign*30
+            ori += sign*45
         m, c = getIntercept(prevPos[0], prevPos[1], ori)
         posY = m*posX + c
         if circle.contains((posX, posY)):
             line = draw_line(win, pos=(posX, posY), contour=False, color=True, size=0.1, ori=ori-45, center=False)
+            print posX, posY
             prevPos = (posX, posY)
             allLines.append(line)
 
     ori_orth = np.random.uniform(-180,180)
-    for posX in np.arange(-curr_radius, curr_radius, 0.35):
-        for posY in np.arange(-curr_radius, curr_radius, 0.35):
+    for posX in np.arange(-curr_radius, curr_radius, 0.4):
+        for posY in np.arange(-curr_radius, curr_radius, 0.4):
             if circle.contains(posX, posY):
                 alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                 minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
                 ori_orth = np.random.uniform(minTheta, maxTheta)
-                distort = np.random.uniform(-0.03,0.03)
-                posX, posY = posX+distort, posY+distort
                 ln = visual.Line(win=win,pos=(posX, posY),
                                  size=size,ori=np.random.uniform(ori_orth),contrast=1.,
                                  lineColor=(1,1,1),interpolate=True)
-                overlaps = [np.sum(np.abs(ln.pos-ln2.pos))<0.2 for ln2 in allLines]
+                overlaps = [np.sum(np.abs(ln.pos-ln2.pos))<0.3 for ln2 in allLines]
                 if not True in overlaps:
                     ln.draw()
 
