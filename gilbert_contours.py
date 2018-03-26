@@ -47,8 +47,17 @@ def parse_arguments():
             '--pause_display', dest='pause_display', type=bool,
             default=False, help='Pause display after rendering contour? (True/False)')
     parser.add_argument(
+            '--distractor_contrast', dest='distractor_contrast', nargs='+', type=float,
+            default=[1.0], help='Contrast value for distractor? (0-1)')
+    parser.add_argument(
             '--global_spacing', dest='global_spacing', type=float,
             default=0.25, help='Space between any two snakes')
+    parser.add_argument(
+            '--save_images', dest='save_images', type=bool,
+            default=False, help='Save images?')
+    parser.add_argument(
+            '--random_contour', dest='randomContour', type=bool,
+            default=False, help='Random orientations for contour? (True/False)')
     parser.add_argument(
             '--paddle_length', dest='paddle_length', type=float,
             default=0.1, help='Length of the paddle forming snakes')
@@ -100,7 +109,8 @@ def fillIncludeContour_zigzag(nRows,nCols, pos, length=5):
 def draw_lines_row(win, circle, positions, args,
                     color=False, size=0.1, shearAngle=0.3,
                     length=3, contourPosition=(10,20),
-                    randomContrast=True, zigzag=False, zigzagAngle=0):
+                    randomContrast=True, zigzag=False, zigzagAngle=0,
+                    distractor_contrast=1.0):
     """Function to draw the main contour line segments."""
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     if zigzag:
@@ -122,8 +132,13 @@ def draw_lines_row(win, circle, positions, args,
             pos = positions_[i,j,:]
             if circle.contains(pos,units='deg'):
                 if np.abs(includeContour[i,j])==1:
-                    ori = zigzagAngle*includeContour[i,j] + getContourOrientation(shearAngle)
+                    if args.randomContour:
+                        ori = np.random.uniform(0,180)
+                    else:
+                        ori = zigzagAngle*includeContour[i,j] + getContourOrientation(shearAngle)
                     contour=True
+                    if not randomContrast:
+                        contrast = 1.
                     if np.all(contourPosition==(i,j)):
                         center=True
                 else:
@@ -132,14 +147,12 @@ def draw_lines_row(win, circle, positions, args,
                     ori_orth = np.random.uniform(minTheta, maxTheta)
                     if ori_orth<0:
                         ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
+                    if not randomContrast:
+                        contrast = distractor_contrast
                     ori = ori_orth
                     contour=False
-                    center=False
                     ori=np.random.uniform(-180,180)
-                if randomContrast:
-                    contrast = np.random.uniform(0,1)
-                else:
-                    contrast = 1.
+                    center=False
                 draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
 
 def main_drawing_loop(win, args):
@@ -159,36 +172,50 @@ def main_drawing_loop(win, args):
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearLow, shearHigh = args.shear_range
     for shearAngle in [shearLow, shearHigh]:
-        for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
-            for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
-                win.viewOri = np.random.uniform(0,360)
-                curr_ecc = np.random.uniform(min_ecc, max_ecc)
-                ecc_lines = curr_ecc*linesPerDegree
-                a_contour = np.random.uniform(0,np.pi/2)
-                pos = get_contour_center(a_contour, curr_ecc)
-                pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-                positions = [(j,i) for i in np.arange(-args.skew_slack,
-                                                        args.skew_slack,
-                                                        args.global_spacing)
-                                   for j in np.arange(-args.skew_slack,
-                                                        args.skew_slack,
-                                                        args.global_spacing)]
-                print "Contour center: %s,%s"%(pos)
-                positions = np.array(positions).reshape((
-                                                    nLinesOnDiameter,
-                                                    nLinesOnDiameter,2))
-                draw_lines_row(win, circle, positions, args,
-                                color=args.color,length=length,
-                                shearAngle=shearAngle,size=args.paddle_length,
-                                randomContrast=args.random_contrast,
-                                contourPosition=pos, zigzag=args.zigzag,
-                                zigzagAngle=args.zigzagAngle)
-                win.flip()
-                if args.pause_display:
-                    import ipdb; ipdb.set_trace()
-                win.getMovieFrame()
-                win.saveMovieFrames("%s/sample_%s_shear_%s_length%s_eccentricity_%s.png"
-                                            %(args.contour_path,args.window_size[0],shearAngle,length,curr_ecc))
+        for contrast in args.distractor_contrast:
+            for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
+                for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
+                    win.viewOri = np.random.uniform(0,360)
+                    curr_ecc = np.random.uniform(min_ecc, max_ecc)
+                    ecc_lines = curr_ecc*linesPerDegree
+                    a_contour = np.random.uniform(0,np.pi/2)
+                    pos = get_contour_center(a_contour, curr_ecc)
+                    pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
+                    positions = [(j,i) for i in np.arange(-args.skew_slack,
+                                                            args.skew_slack,
+                                                            args.global_spacing)
+                                       for j in np.arange(-args.skew_slack,
+                                                            args.skew_slack,
+                                                            args.global_spacing)]
+                    print "Contour center: %s,%s"%(pos)
+                    positions = np.array(positions).reshape((
+                                                        nLinesOnDiameter,
+                                                        nLinesOnDiameter,2))
+                    draw_lines_row(win, circle, positions, args,
+                                    color=args.color,length=length,
+                                    shearAngle=shearAngle,size=args.paddle_length,
+                                    randomContrast=args.random_contrast,
+                                    contourPosition=pos, zigzag=args.zigzag,
+                                    zigzagAngle=args.zigzagAngle,
+                                    distractor_contrast=contrast)
+                    win.flip()
+                    if args.pause_display:
+                        import ipdb; ipdb.set_trace()
+                    win.getMovieFrame()
+                    if args.randomContour:
+                        win.saveMovieFrames("%s/sample_%s_contrast_%s_shear_%s_length0_eccentricity_%s.png"
+                                               %(args.contour_path,
+                                                   contrast,
+                                                   args.window_size[0],
+                                                   shearAngle,
+                                                   curr_ecc))
+                    else:
+                        win.saveMovieFrames("%s/sample_%s_contrast_%s_shear_%s_length%s_eccentricity_%s.png"
+                                               %(args.contour_path,
+                                                   contrast,
+                                                   args.window_size[0],
+                                                   shearAngle,length,
+                                                   curr_ecc))
     win.close()
 
 
