@@ -19,6 +19,26 @@ def get_contour_center(a_contour, curr_radius):
     rX, rY = curr_radius*np.cos(a_contour), curr_radius*np.sin(a_contour)
     return rX, rY
 
+def get_gaussian_1d(sigma, points, order):
+    points = np.float_(points)
+    variance = sigma*sigma
+    op1 = -points/variance
+    points = points*points
+    denom = 2*np.pi*variance
+    probs = np.exp(-points/(2*variance))/np.sqrt(denom)
+    if order==1:
+     probs = op1*probs
+    return probs
+
+def get_gaussian_derivatives(size, ori):
+    #RECHECK THIS FUNCTION!
+    k = size/2
+    orgpts = np.array([(i,j) for i,j in zip(np.arange(-k,k+1),np.arange(-k,k+1))])
+    gx = get_gaussian_1d(3,orgpts[:,0],0)
+    gy = get_gaussian_1d(1,orgpts[:,1],1)
+    kern = np.outer(gx, gy)
+    return kern
+
 def drawSnakes(win, circle, positions, color=True, size=0.1, length=15, contourPosition=(32,32)):
     nRows, nCols = positions.shape[0], positions.shape[1]
     #posX, posY = sample(range(nRows),1)[0], sample(range(nCols),1)[0]
@@ -67,7 +87,7 @@ def getContourOrientation(shearAngle):
     if shearAngle>0:
         ori = (shearAngle*15.9)
     else:
-        ori=-np.abs(shearAngle)*45.9 
+        ori=-np.abs(shearAngle)*45.9
     return ori
 
 def fillIncludeContour(nRows,nCols,pos,length=5,a_contour=0):

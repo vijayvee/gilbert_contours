@@ -2,6 +2,7 @@
 from psychopy import visual, event, monitors, core
 import numpy as np
 import scipy.linalg
+import scipy.stats as stats
 import argparse
 from tqdm import tqdm
 import os
@@ -29,6 +30,9 @@ def parse_arguments():
             '--radius', dest='curr_radius', type=int,
             default=CURR_RADIUS, help='Radius of circle for gilbert stimuli')
     parser.add_argument(
+            '--just_display', dest='just_display', type=bool,
+            default=False, help='Just display don\'t save?(True/False)')
+    parser.add_argument(
             '--window_size', dest='window_size', nargs='+', type=int,
             default=WINDOW_SIZE, help='Size of stimulus window')
     parser.add_argument(
@@ -43,6 +47,9 @@ def parse_arguments():
     parser.add_argument(
             '--random_contrast', dest='random_contrast', type=bool,
             default=False, help='Stable contrast for stimuli? (True/False)')
+    parser.add_argument(
+            '--random_contrast_std', dest='random_contrast_std', type=float,
+            default=0.5, help='Stable contrast for stimuli? (True/False)')
     parser.add_argument(
             '--pause_display', dest='pause_display', type=bool,
             default=False, help='Pause display after rendering contour? (True/False)')
@@ -136,11 +143,10 @@ def draw_lines_row(win, circle, positions, args,
                         ori = np.random.uniform(0,180)
                     else:
                         ori = zigzagAngle*includeContour[i,j] + getContourOrientation(shearAngle)
-                    contour=True
                     if not randomContrast:
                         contrast = 1.
-                    if np.all(contourPosition==(i,j)):
-                        center=True
+                    else:
+                        contrast = np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
                 else:
                     alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                     minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
@@ -150,9 +156,6 @@ def draw_lines_row(win, circle, positions, args,
                     if not randomContrast:
                         contrast = distractor_contrast
                     ori = ori_orth
-                    contour=False
-                    ori=np.random.uniform(-180,180)
-                    center=False
                 draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
 
 def main_drawing_loop(win, args):
@@ -169,14 +172,24 @@ def main_drawing_loop(win, args):
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=args.curr_radius,
                                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
                                                gilb_max_ecc=8.4)
+    max_ecc = min(2*min_ecc, max_ecc)
+    mean_ecc = (min_ecc + max_ecc)/2.
+    scale_ecc = max_ecc - min_ecc
+    norm_ecc = stats.truncnorm((min_ecc - mean_ecc)/scale_ecc,
+                                 (max_ecc-mean_ecc)/scale_ecc,
+                                 loc=mean_ecc, scale=scale_ecc)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
-    shearLow, shearHigh = args.shear_range
-    for shearAngle in [shearLow, shearHigh]:
+    shearLow, shearHigh = min(args.shear_range), max(args.shear_range)
+    for shearAngle in [shearLow]:
+        print "Shear only :", shearLow
         for contrast in args.distractor_contrast:
+            print "Contrast only:", args.distractor_contrast
             for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
+                print "Length only:",args.contour_lengths
                 for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
                     win.viewOri = np.random.uniform(0,360)
-                    curr_ecc = np.random.uniform(min_ecc, max_ecc)
+                    #curr_ecc = np.random.uniform(min_ecc, max_ecc)
+                    curr_ecc = norm_ecc.rvs()
                     ecc_lines = curr_ecc*linesPerDegree
                     a_contour = np.random.uniform(0,np.pi/2)
                     pos = get_contour_center(a_contour, curr_ecc)
@@ -202,6 +215,8 @@ def main_drawing_loop(win, args):
                     if args.pause_display:
                         import ipdb; ipdb.set_trace()
                     win.getMovieFrame()
+                    if args.just_display:
+                        continue
                     if args.randomContour:
                         win.saveMovieFrames("%s/sample_%s_contrast_%s_shear_%s_length0_eccentricity_%s.png"
                                                %(args.contour_path,
