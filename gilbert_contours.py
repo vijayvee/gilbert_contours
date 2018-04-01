@@ -5,6 +5,7 @@ import scipy.linalg
 import scipy.stats as stats
 import argparse
 from tqdm import tqdm
+from argparser import *
 import os
 from random import sample
 from matplotlib import pyplot as plt
@@ -20,80 +21,6 @@ WINDOW_SIZE = [400,400]
 CONTOUR_LENGTHS = [15]
 N_IMAGES = 200000
 SHEAR_RANGE = [-0.7,0.7]
-
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-            '--dir', dest='contour_path',
-            default=CONTOUR_PATH, help='Directory where contour images are stored')
-    parser.add_argument(
-            '--circle', dest='circle', type=bool,
-            default=False, help='Retain circle? (True/False)')
-    parser.add_argument(
-            '--radius', dest='curr_radius', type=int,
-            default=CURR_RADIUS, help='Radius of circle for gilbert stimuli')
-    parser.add_argument(
-            '--zero_ecc', dest='zero_ecc', type=bool,
-    default=False, help='Radius of circle for gilbert stimuli')
-    parser.add_argument(
-            '--just_display', dest='just_display', type=bool,
-            default=False, help='Just display don\'t save?(True/False)')
-    parser.add_argument(
-            '--window_size', dest='window_size', nargs='+', type=int,
-            default=WINDOW_SIZE, help='Size of stimulus window')
-    parser.add_argument(
-            '--lengths', dest='contour_lengths', nargs='+', type=int,
-            default=CONTOUR_LENGTHS, help='Lengths of contour snakes')
-    parser.add_argument(
-            '--n_images', dest='n_images', type=int,
-            default=N_IMAGES, help='Number of contour images to render')
-    parser.add_argument(
-            '--shear_range', dest='shear_range', nargs='+', type=float,
-            default=SHEAR_RANGE, help='Range of shear for stimuli')
-    parser.add_argument(
-            '--color_path', dest='color_path', type=str,
-            default='', help='Path to store color labels')
-    parser.add_argument(
-            '--random_contrast', dest='random_contrast', type=bool,
-            default=False, help='Stable contrast for stimuli? (True/False)')
-    parser.add_argument(
-            '--random_contrast_std', dest='random_contrast_std', type=float,
-            default=0.5, help='Stable contrast for stimuli? (True/False)')
-    parser.add_argument(
-            '--pause_display', dest='pause_display', type=bool,
-            default=False, help='Pause display after rendering contour? (True/False)')
-    parser.add_argument(
-            '--distractor_contrast', dest='distractor_contrast', nargs='+', type=float,
-            default=[1.0], help='Contrast value for distractor? (0-1)')
-    parser.add_argument(
-            '--global_spacing', dest='global_spacing', type=float,
-            default=0.25, help='Space between any two snakes')
-    parser.add_argument(
-            '--save_images', dest='save_images', type=bool,
-            default=False, help='Save images?')
-    parser.add_argument(
-            '--random_contour', dest='randomContour', type=bool,
-            default=False, help='Random orientations for contour? (True/False)')
-    parser.add_argument(
-            '--paddle_length', dest='paddle_length', type=float,
-            default=0.1, help='Length of the paddle forming snakes')
-    parser.add_argument(
-            '--color', dest='color', type=bool,
-            default=False, help='Print contours in color? (True/False)')
-    parser.add_argument(
-            '--random_rotations', dest='rotate', type=bool,
-            default=False, help='Rotate window randomly? (True/False)')
-    parser.add_argument(
-            '--skew_slack', dest='skew_slack', type=float,
-            default=2, help='Slack positions for compensating skew?')
-    parser.add_argument(
-            '--zigzag', dest='zigzag', type=bool,
-            default=False, help='Zigzag contours?')
-    parser.add_argument(
-            '--zigzag_angle', dest='zigzagAngle', type=float,
-            default=0, help='Zigzag angle?')
-    args = parser.parse_args()
-    return args
 
 def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     #Include contours by relaxing the tangential contour path condition
@@ -142,6 +69,13 @@ def draw_lines_row(win, win2, circle, positions, args,
     positions_ = shear(positions,shearX=shearAngle) #Shearing to adjust intra-contour
     oriContour,contour,center = -1,False,False
     ori_orth = np.random.uniform(-180,180) #Choose random starting angle for distractor line segments
+    if args.random_contrast:
+        minContrast, maxContrast = args.contrast_range
+        scaleContrast = args.scale_contrast
+        meanContrast = (minContrast + maxContrast)/2.
+        normContrast = stats.truncnorm((minContrast - meanContrast)/scaleContrast,
+                                     (maxContrast-meanContrast)/scaleContrast,
+                                     loc=meanContrast, scale=scaleContrast)
     for i in range(positions.shape[0]):
         for j in range(positions.shape[1]):
             #Main loop, align elements along the contour and randomly orient other elements in contour grid
@@ -158,7 +92,7 @@ def draw_lines_row(win, win2, circle, positions, args,
                 if not randomContrast:
                     contrast = 1.
                 else:
-                    contrast = np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
+                    contrast = normContrast.rvs() #np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
                 contour=True
             else:
                 alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
@@ -168,8 +102,11 @@ def draw_lines_row(win, win2, circle, positions, args,
                     ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                 if not randomContrast:
                     contrast = distractor_contrast
+                else:
+                    contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)
                 ori = ori_orth
                 contour=False
+
             draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
             if win2 is not None:
                 draw_line(win2, pos=pos, contour=contour, color=True, size=size, ori=ori, center=center, contrast=contrast)
@@ -201,6 +138,7 @@ def main_drawing_loop(win, args, win2=None):
                                  loc=mean_ecc, scale=scale_ecc)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearLow, shearHigh = min(args.shear_range), max(args.shear_range)
+    print "Random contrast: %s"%(args.random_contrast)
     for shearAngle in [shearLow]:
         print "Shear only :", shearLow
         for contrast in args.distractor_contrast:
