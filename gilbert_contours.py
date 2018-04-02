@@ -71,11 +71,7 @@ def draw_lines_row(win, win2, circle, positions, args,
     ori_orth = np.random.uniform(-180,180) #Choose random starting angle for distractor line segments
     if args.random_contrast:
         minContrast, maxContrast = args.contrast_range
-        scaleContrast = args.scale_contrast
-        meanContrast = (minContrast + maxContrast)/2.
-        normContrast = stats.truncnorm((minContrast - meanContrast)/scaleContrast,
-                                     (maxContrast-meanContrast)/scaleContrast,
-                                     loc=meanContrast, scale=scaleContrast)
+        normContrast = get_normal_dist(minContrast, maxContrast)
     for i in range(positions.shape[0]):
         for j in range(positions.shape[1]):
             #Main loop, align elements along the contour and randomly orient other elements in contour grid
@@ -97,13 +93,20 @@ def draw_lines_row(win, win2, circle, positions, args,
             else:
                 alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                 minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
+                #normTheta = get_normal_dist(minTheta, maxTheta)
+                #if args.dist_uniform:
                 ori_orth = np.random.uniform(minTheta, maxTheta)
+                #else:
+                #    ori_orth = normTheta.rvs()
                 if ori_orth<0:
                     ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                 if not randomContrast:
                     contrast = distractor_contrast
                 else:
-                    contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)
+                    if args.dist_uniform:
+                        contrast = np.random.uniform(minContrast, maxContrast)
+                    else:
+                        contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)
                 ori = ori_orth
                 contour=False
 
@@ -131,28 +134,29 @@ def main_drawing_loop(win, args, win2=None):
                                                gilb_radius=43.8/2, gilb_min_ecc=2.4,
                                                gilb_max_ecc=8.4)
     max_ecc = min(2*min_ecc, max_ecc)
-    mean_ecc = (min_ecc + max_ecc)/2.
-    scale_ecc = max_ecc - min_ecc
-    norm_ecc = stats.truncnorm((min_ecc - mean_ecc)/scale_ecc,
-                                 (max_ecc-mean_ecc)/scale_ecc,
-                                 loc=mean_ecc, scale=scale_ecc)
+    norm_ecc = get_normal_dist(min_ecc, max_ecc)
+    minViewOri = 0
+    maxViewOri = 360
+    normViewOri = get_normal_dist(minViewOri, maxViewOri)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearLow, shearHigh = min(args.shear_range), max(args.shear_range)
     print "Random contrast: %s"%(args.random_contrast)
-    for shearAngle in [shearLow]:
-        print "Shear only :", shearLow
+    for shearAngle in args.shear_range:
         for contrast in args.distractor_contrast:
-            print "Contrast only:", args.distractor_contrast
             for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
-                print "Length only:",args.contour_lengths
                 for nimg in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
-                    viewOri = np.random.uniform(0,360)
+                    if args.dist_uniform:
+                        viewOri = np.random.uniform(0,360)
+                    else:
+                        viewOri = normViewOri.rvs()
                     win.viewOri = viewOri
                     if win2 is not None:
                         win2.viewOri = viewOri
-                    #curr_ecc = np.random.uniform(min_ecc, max_ecc)
                     if not args.zero_ecc:
-                        curr_ecc = norm_ecc.rvs()
+                        if args.dist_uniform:
+                            curr_ecc = np.random.uniform(min_ecc, max_ecc)
+                        else:
+                            curr_ecc = norm_ecc.rvs()
                     else:
                         curr_ecc = 0
                     ecc_lines = curr_ecc*linesPerDegree

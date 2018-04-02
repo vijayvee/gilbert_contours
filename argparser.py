@@ -42,7 +42,10 @@ def parse_arguments():
             default='', help='Path to store color labels')
     parser.add_argument(
             '--contrast_range', dest='contrast_range', type=float, nargs='+',
-            default=[1.,1.], help='Minimum and maximum contrast [-1,1]')
+            default=[0.7,1.], help='Minimum and maximum contrast [-1,1]')
+    parser.add_argument(
+            '--uniform', dest='dist_uniform', type=bool,
+            default=False, help='Random distributions uniform? (True - Uniform. False - Normal.)')
     parser.add_argument(
             '--scale_contrast', dest='scale_contrast', type=float,
             default=0.0, help='Standard deviation of contrast range')

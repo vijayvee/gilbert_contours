@@ -6,6 +6,7 @@ from tqdm import tqdm
 import os
 from random import sample
 from matplotlib import pyplot as plt
+import scipy.stats as stats
 
 def create_window(window_size, monitor,viewOri=0):
     """Function to create a window to plot stimuli"""
@@ -27,6 +28,14 @@ def draw_line(win, pos, contour=False, color=False, size=3., contrast=1.0, ori=0
     ln = visual.Line(win=win,pos=pos,size=size,ori=ori,contrast=contrast,lineColor=lineColor,interpolate=True)
     ln.draw()
     return ln
+
+def get_normal_dist(minVal, maxVal):
+    mean = (minVal+maxVal)/2.
+    scale = maxVal - minVal
+    norm = stats.truncnorm((minVal-mean)/scale,
+                            (maxVal-mean)/scale,
+                            loc=mean, scale=scale)
+    return norm
 
 def draw_grating_stim(win, pos, size,ori=0, lineColor=(1,-1,-1)):
     """Function to draw a grating stimulus"""
