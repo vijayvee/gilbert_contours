@@ -7,9 +7,9 @@ import gilbert_contours
 
 def Args(contour_path = '', batch_id=0,
         circle=False, curr_radius=4, zero_ecc=False, just_display=False, window_size=[400,400],
-        contour_lengths=[15], n_images = 200000, shear_range=[-0.7,0.7], color_path = '',
+        contour_length=15, n_images = 200000, shear_val=-0.7, color_path = '',
         contrast_range=[0.7, 1.], dist_uniform=False, scale_contrast=0.0,
-        random_contrast=False, random_contrast_std=0.5, pause_display=False, distractor_contrast=[1.0],
+        random_contrast=False, random_contrast_std=0.5, pause_display=False, distractor_contrast=1.0,
         global_spacing = 0.25, save_images=False, randomContour=False, paddle_length=1.0,
         color = False, random_rotations=False, skew_slack=2, zigzag=False, zigzagAngle=0):
 
@@ -20,9 +20,9 @@ def Args(contour_path = '', batch_id=0,
     Args.zero_ecc = zero_ecc
     Args.just_display = just_display
     Args.window_size = window_size
-    Args.contour_lengths = contour_lengths
+    Args.contour_length = contour_length
     Args.n_images = n_images
-    Args.shear_range = shear_range
+    Args.shear_val = shear_val
     Args.color_path = color_path
     Args.contrast_range = contrast_range
     Args.dist_uniform = dist_uniform
@@ -85,9 +85,8 @@ for iparam, param in params:
 
         gilbert_contours.from_wrapper(args)
 
-                
+
 
 elapsed = time.time() - t
 
 print('ELAPSED TIME : ', str(elapsed))
-
