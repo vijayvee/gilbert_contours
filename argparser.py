@@ -2,6 +2,7 @@ import argparse
 
 CURR_RADIUS = 4
 CONTOUR_PATH = '.'
+METADATA_PATH = '.'
 WINDOW_SIZE = [400,400]
 CONTOUR_LENGTHS = [15]
 N_IMAGES = 200000
@@ -13,6 +14,9 @@ def parse_arguments():
     parser.add_argument(
             '--dir', dest='contour_path',
             default=CONTOUR_PATH, help='Directory where contour images are stored')
+    parser.add_argument(
+            '--batch_id', dest='batch_id',
+            default=0, help='The id of the current batch (in integer)')
     parser.add_argument(
             '--circle', dest='circle', type=bool,
             default=False, help='Retain circle? (True/False)')
