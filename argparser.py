@@ -6,7 +6,7 @@ METADATA_PATH = '.'
 WINDOW_SIZE = [400,400]
 CONTOUR_LENGTHS = [15]
 N_IMAGES = 200000
-SHEAR_RANGE = [-0.7,0.7]
+SHEAR_VAL = -0.7
 
 def parse_arguments():
     #Parser to parse command line arguments
@@ -33,14 +33,16 @@ def parse_arguments():
             '--window_size', dest='window_size', nargs='+', type=int,
             default=WINDOW_SIZE, help='Size of stimulus window')
     parser.add_argument(
-            '--lengths', dest='contour_lengths', nargs='+', type=int,
-            default=CONTOUR_LENGTHS, help='Lengths of contour snakes')
+            '--length', dest='contour_length', type=int,
+            default=15, help='Lengths of contour snakes')
     parser.add_argument(
             '--n_images', dest='n_images', type=int,
             default=N_IMAGES, help='Number of contour images to render')
     parser.add_argument(
-            '--shear_range', dest='shear_range', nargs='+', type=float,
-            default=SHEAR_RANGE, help='Range of shear for stimuli')
+            '--shear_val', dest='shear_val', type=float,
+            default=SHEAR_VAL, help='Value of shear for stimuli. \
+                                      The smaller the value, the denser \
+                                      the paddles')
     parser.add_argument(
             '--color_path', dest='color_path', type=str,
             default='', help='Path to store color labels')
@@ -63,8 +65,8 @@ def parse_arguments():
             '--pause_display', dest='pause_display', type=bool,
             default=False, help='Pause display after rendering contour? (True/False)')
     parser.add_argument(
-            '--distractor_contrast', dest='distractor_contrast', nargs='+', type=float,
-            default=[1.0], help='Contrast value for distractor? (0-1)')
+            '--distractor_contrast', dest='distractor_contrast', type=float,
+            default=1.0, help='Contrast value for distractor? (0-1)')
     parser.add_argument(
             '--global_spacing', dest='global_spacing', type=float,
             default=0.25, help='Space between any two snakes')

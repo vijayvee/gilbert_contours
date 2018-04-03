@@ -83,4 +83,3 @@ for ivalue, value in enumerate(lengths):
 elapsed = time.time() - t
 
 print('ELAPSED TIME : ', str(elapsed))
-
