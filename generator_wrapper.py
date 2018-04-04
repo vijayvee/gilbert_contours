@@ -11,7 +11,7 @@ class Args:
                  circle=False, curr_radius=4, zero_ecc=False, just_display=False, window_size=[256,256],
                  contour_length=15, n_images = 200000, shear_val=0, color_path = '',
                  contrast_range=[0.7, 1.], dist_uniform=False, scale_contrast=0.0,
-                 random_contrast=False, random_contrast_std=0.5, pause_display=False, distractor_contrast=1.0,
+                 random_contrast=True, random_contrast_std=-1, pause_display=False, distractor_contrast=1.0,
                  global_spacing = 0.25, save_images=False, randomContour=False, paddle_length=1.0,
                  color = False, random_rotations=False, skew_slack=2, zigzag=False, zigzagAngle=0):
 
@@ -48,10 +48,9 @@ args = Args()
 
 ## CONSTANTS
 dataset_root = './' #'/gpfs/data/tserre/data/gilbert_contours/'
-args.curr_radius = 4
-args.window_size = [256,256]
 args.contour_length = 15
-args.n_images = 30
+args.n_images = 5
+
 args.paddle_length = 0.1
 args.random_rotations = True
 args.skew_slack = 6.5
@@ -74,7 +73,7 @@ for ivalue, value in enumerate(lengths):
     args.contour_length = value
     dataset_subpath = 'length' + str(value)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
-
+    args.window_size=[128,128]
     args.batch_id = ibatch
     gilbert_contours.from_wrapper(args)
 
