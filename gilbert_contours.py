@@ -15,12 +15,7 @@ from psychopy_utils import *
 
 """Code to create the snakes dataset for association fields"""
 
-CURR_RADIUS = 4
-CONTOUR_PATH = '.'
-WINDOW_SIZE = [400,400]
-contour_length = 15
-N_IMAGES = 200000
-SHEAR_VAL = -0.7
+
 
 def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     #Include contours by relaxing the tangential contour path condition
@@ -159,7 +154,7 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearAngle = args.shear_val #min(args.shear_range), max(args.shear_range)
     print "Random contrast: %s"%(args.random_contrast)
-    contrast = args.distractor_contrast:
+    contrast = args.distractor_contrast
     length = args.contour_length
     image_sub_path = os.path.join('imgs', str(args.batch_id))
     make_contours_dir(os.path.join(args.contour_path, image_sub_path))
@@ -251,6 +246,13 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
 
 
 def main():
+    CURR_RADIUS = 4
+    CONTOUR_PATH = '.'
+    WINDOW_SIZE = [400, 400]
+    contour_length = 15
+    N_IMAGES = 200000
+    SHEAR_VAL = -0.7
+
     args = parse_arguments()
     make_contours_dir(args.contour_path)
     win2 = None

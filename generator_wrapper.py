@@ -8,10 +8,10 @@ import gilbert_contours
 class Args:
     def __init__(self,
                  contour_path = '', batch_id=0,
-                 circle=False, curr_radius=4, zero_ecc=False, just_display=False, window_size=[400,400],
-                 contour_lengths=[15], n_images = 200000, shear_range=[-0.7,0.7], color_path = '',
+                 circle=False, curr_radius=4, zero_ecc=False, just_display=False, window_size=[256,256],
+                 contour_length=15, n_images = 200000, shear_val=0, color_path = '',
                  contrast_range=[0.7, 1.], dist_uniform=False, scale_contrast=0.0,
-                 random_contrast=False, random_contrast_std=0.5, pause_display=False, distractor_contrast=[1.0],
+                 random_contrast=False, random_contrast_std=0.5, pause_display=False, distractor_contrast=1.0,
                  global_spacing = 0.25, save_images=False, randomContour=False, paddle_length=1.0,
                  color = False, random_rotations=False, skew_slack=2, zigzag=False, zigzagAngle=0):
 
@@ -22,9 +22,9 @@ class Args:
         self.zero_ecc = zero_ecc
         self.just_display = just_display
         self.window_size = window_size
-        self.contour_lengths = contour_lengths
+        self.contour_length = contour_length
         self.n_images = n_images
-        self.shear_range = shear_range
+        self.shear_val = shear_val
         self.color_path = color_path
         self.contrast_range = contrast_range
         self.dist_uniform = dist_uniform
@@ -50,7 +50,7 @@ args = Args()
 dataset_root = './' #'/gpfs/data/tserre/data/gilbert_contours/'
 args.curr_radius = 4
 args.window_size = [256,256]
-args.lengths = [15]
+args.contour_length = 15
 args.n_images = 30
 args.paddle_length = 0.1
 args.random_rotations = True
@@ -71,7 +71,7 @@ args.n_images = 10
 
 for ivalue, value in enumerate(lengths):
 
-    args.lengths = [value]
+    args.contour_length = value
     dataset_subpath = 'length' + str(value)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
 
