@@ -99,4 +99,5 @@ args.shear_val = 0
 
 elapsed = time.time() - t
 
+print('n_totl_imgs (per condition) : ', str(total_images))
 print('ELAPSED TIME : ', str(elapsed))

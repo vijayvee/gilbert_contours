@@ -1,5 +1,6 @@
 #!/bin/bash
 n_machines=40
+n_totl_images=500000
 script_name='generator_wrapper.py'
 username='jk9'
 
@@ -13,7 +14,7 @@ sbatch -J "$script_name[$i_machine]" <<EOF
 #SBATCH -p $PARTITION
 #SBATCH -n 2
 #SBATCH -t 10:00:00
-#SBATCH --mem=16G
+#SBATCH --mem=8G
 #SBATCH --begin=now
 #SBATCH --qos=$QOS
 #SBATCH --output=/gpfs/scratch/$username/slurm/slurm-%j.out
@@ -23,6 +24,6 @@ echo "Starting job $i_machine on $HOSTNAME"
 LC_ALL=en_US.utf8 \
 module load boost hdf5 ffmpeg/1.2 cuda/7.5.18
 
-python $script_name $n_machines $i_machine
+python $script_name $n_machines $i_machine $n_totl_images
 EOF
 done
