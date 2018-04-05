@@ -55,13 +55,13 @@ args.n_images = total_images/num_machines
 dataset_root = './' #'/gpfs/data/tserre/data/gilbert_contours/'
 
 args.contour_length = 15
+args.window_size = [128,128] #TODO: FIX
 args.paddle_length = 0.1
 args.random_rotations = True
 args.skew_slack = 6.5
 
 ################################# DS: BASELINE
 dataset_subpath = 'baseline'
-gilbert_contours.from_wrapper(args)
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 gilbert_contours.from_wrapper(args)
 
@@ -75,6 +75,7 @@ args.distractor_contrast = 1.0
 
 ################################# DS: all paddle contrast with a distribution sigma from -1 to 0.7
 args.random_contrast = True
+#TODO: FIX
 #for pc in [??]:
     #?????
     #contrast_range
@@ -86,6 +87,7 @@ args.random_contrast = False
 
 ################################# DS: snake inter-paddle angle from 0 to 20
 # NOT IMPLEMENTED YET
+#TODO: FIX
 
 ################################# DS: snake inter-paddle distance from -0.7 to 0.7
 for sv in [-0.7, -0.35, 0.35, 0.7]:
