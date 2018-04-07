@@ -1,7 +1,7 @@
 #!/bin/bash
-n_machines=40
-n_totl_images=500000
-script_name='generator_wrapper.py'
+n_machines=1
+n_totl_images=2
+script_name='gilbert_wrapper.py'
 username='jk9'
 
 # submit job
@@ -9,7 +9,7 @@ PARTITION='batch' # batch # bibs-smp # bibs-gpu # gpu # small-batch
 QOS='bibs-tserre-condo' # pri-jk9
 
 for i_machine in $(seq 1 $n_machines); do
-sbatch -J "$script_name[$i_machine]" <<EOF
+sbatch --X11 -J "$script_name[$i_machine]" <<EOF
 #!/bin/bash
 #SBATCH -p $PARTITION
 #SBATCH -n 2

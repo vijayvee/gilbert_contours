@@ -158,7 +158,7 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     length = args.contour_length
     image_sub_path = os.path.join('imgs', str(args.batch_id))
     make_contours_dir(os.path.join(args.contour_path, image_sub_path))
-    make_contours_dir(os.path.join(args.color_path, image_sub_path))
+    #make_contours_dir(os.path.join(args.color_path, image_sub_path))
     for nimg in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
         viewOri = np.random.uniform(0,360)
         win.viewOri = viewOri
