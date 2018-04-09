@@ -12,7 +12,7 @@ class Args:
                  window_size=[256,256], antialias_scale = 4,
                  contour_length=15, distractor_length=5, num_distractor_contours=6,
                  max_target_contour_retrial = 4, max_distractor_contour_retrial = 4, max_paddle_retrial=2,
-                 continuity = 1.4, paddle_length=5, paddle_thickness=1.5, paddle_margin=4,
+                 continuity = 1.4, paddle_length=5, paddle_thickness=1.5, paddle_margin_list=[4], paddle_contrast_list=[1.],
                  pause_display=False, save_images=True, save_gt=False, save_metadata=True):
 
         self.contour_path = contour_path
@@ -33,7 +33,8 @@ class Args:
         self.continuity = continuity
         self.paddle_length = paddle_length
         self.paddle_thickness = paddle_thickness
-        self.paddle_margin = paddle_margin
+        self.paddle_margin_list = paddle_margin_list # if multiple elements in a list, a number will be sampled in each IMAGE
+        self.paddle_contrast_list = paddle_contrast_list # if multiple elements in a list, a number will be sampled in each PADDLE
 
         self.pause_display = pause_display
         self.save_images = save_images
@@ -48,7 +49,7 @@ args.batch_id = int(sys.argv[2])
 total_images = int(sys.argv[3])
 args.n_images = total_images/num_machines
 
-dataset_root = './' #'/gpfs/data/tserre/data/gilbert_contours/'
+dataset_root = './'#'/gpfs/data/tserre/data/PSST/curvy_nodecoy'
 
 # args.contour_length = 10
 # args.distractor_length = 5
@@ -59,7 +60,7 @@ args.antialias_scale = 2
 ################################# DS: BASELINE
 dataset_subpath = 'curv_baseline'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
-snakes.from_wrapper(args)
+# snakes.from_wrapper(args)
 
 ################################# DS: snake length
 # length from 10 to 30
@@ -67,7 +68,7 @@ for cl in [10, 20, 25, 30]:
     dataset_subpath = 'curv_contour_length_' + str(cl)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.contour_length = cl
-    snakes.from_wrapper(args)
+    #snakes.from_wrapper(args)
 args.contour_length = 15
 
 ################################# DS: snake inter-paddle continuity
@@ -76,7 +77,7 @@ for ct in [1.0, 1.8, 2.2, 2.6]:
     dataset_subpath = 'curv_continuity_' + str(ct)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.continuity = ct
-    snakes.from_wrapper(args)
+    #snakes.from_wrapper(args)
 args.continuity = 1.4
 
 ################################# DS: (REST OF THE 2-way MATRIX)
@@ -90,7 +91,42 @@ dataset_subpath = 'curv_negative_scatter'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 args.contour_length = 1
 args.distractor_length = 1
-snakes.from_wrapper(args)
+# snakes.from_wrapper(args)
+
+################################# DS: snake paddle contrast
+contrast_interval = 0.02
+# if nc = 10, contrast is sampled from 11 values (nc+1)
+for nc in [10, 20, 30, 40]:
+    # Positive
+    dataset_subpath = 'num_paddle_contrasts_' + str(nc)
+    args.contour_path = os.path.join(dataset_root, dataset_subpath)
+    args.paddle_contrast_list = list(np.linspace(1., 1.-contrast_interval*nc, num=nc+1, endpoint=True))
+    snakes.from_wrapper(args)
+    # Negative
+    dataset_subpath = 'num_paddle_contrasts_' + str(nc) + '_neg'
+    args.contour_path = os.path.join(dataset_root, dataset_subpath)
+    args.contour_length = 1
+    snakes.from_wrapper(args)
+args.contour_length = 15
+args.paddle_contrast_list = [1.]
+
+################################# DS: snake margin range
+contrast_interval = 0.02
+# if nc = 10, contrast is sampled from 11 values (nc+1)
+for pm in [[3,4,5], [2,3,4,5,6], [1,2,3,4,5,6,7]]:
+    # Positive
+    dataset_subpath = 'num_paddle_margins_' + str(len(pm))
+    args.contour_path = os.path.join(dataset_root, dataset_subpath)
+    args.paddle_margin_list = pm
+    snakes.from_wrapper(args)
+    # Negative
+    dataset_subpath = 'num_paddle_margins_' + str(len(pm)) + '_neg'
+    args.contour_path = os.path.join(dataset_root, dataset_subpath)
+    args.contour_length = 1
+    snakes.from_wrapper(args)
+args.contour_length = 15
+args.paddle_margin_list = [4]
+
 
 
 elapsed = time.time() - t

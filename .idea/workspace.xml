@@ -2,12 +2,221 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="654f003c-8f5a-4f4d-bef2-15ba800a6c68" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snakes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snakes_wrapper.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/generator_wrapper.py" afterPath="$PROJECT_DIR$/gilbert_wrapper.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/generator_wrapper_ccv.sh" afterPath="$PROJECT_DIR$/gilbert_wrapper.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snakes_wrapper.sh" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_baseline/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.0/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_1.8/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.2/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_continuity_2.6/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_10/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_20/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_25/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_contour_length_30/metadata/1.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_17.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_18.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_19.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/imgs/1/sample_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curv_negative_scatter/metadata/1.npy" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gilbert_contours.py" afterPath="$PROJECT_DIR$/gilbert_contours.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes.py" afterPath="$PROJECT_DIR$/snakes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes_wrapper.py" afterPath="$PROJECT_DIR$/snakes_wrapper.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,8 +237,8 @@
       <file leaf-file-name="gilbert_contours.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="213" column="23" lean-forward="false" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+            <state relative-caret-position="440">
+              <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
               <folding>
                 <element signature="e#18#68#0" expanded="true" />
               </folding>
@@ -37,11 +246,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gilbert_wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gilbert_wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-280">
-              <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="105">
+              <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scratch.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scratch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -50,8 +269,8 @@
       <file leaf-file-name="snakes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snakes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3780">
-              <caret line="252" column="22" lean-forward="false" selection-start-line="252" selection-start-column="22" selection-end-line="252" selection-end-column="22" />
+            <state relative-caret-position="-288">
+              <caret line="577" column="21" lean-forward="false" selection-start-line="577" selection-start-column="21" selection-end-line="577" selection-end-column="21" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -59,11 +278,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snakes_wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="snakes_wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="97" column="29" lean-forward="false" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
+            <state relative-caret-position="392">
+              <caret line="126" column="18" lean-forward="true" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -71,7 +290,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="snakes_wrapper.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -97,8 +333,10 @@
       <find>available</find>
       <find>coordinates:</find>
       <find>thickness</find>
-      <find>dead</find>
       <find>save</find>
+      <find>dead</find>
+      <find>binary_dilate</find>
+      <find>re-render</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -115,17 +353,21 @@
         <option value="$PROJECT_DIR$/generator_wrapper_ccv.sh" />
         <option value="$PROJECT_DIR$/psychopy_utils.py" />
         <option value="$PROJECT_DIR$/gilbert_wrapper.sh" />
-        <option value="$PROJECT_DIR$/gilbert_contours.py" />
         <option value="$PROJECT_DIR$/gilbert_wrapper.py" />
-        <option value="$PROJECT_DIR$/snakes_wrapper.py" />
+        <option value="$PROJECT_DIR$/gilbert_contours.py" />
+        <option value="$PROJECT_DIR$/snake_wrapper.sh.py" />
+        <option value="$PROJECT_DIR$/snake_wrapper.sh" />
+        <option value="$PROJECT_DIR$/snakes_wrapper.sh" />
+        <option value="$PROJECT_DIR$/scratch.py" />
         <option value="$PROJECT_DIR$/snakes.py" />
+        <option value="$PROJECT_DIR$/snakes_wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="37" />
+    <option name="x" value="39" />
     <option name="y" value="23" />
-    <option name="width" value="1393" />
+    <option name="width" value="1401" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectView">
@@ -266,10 +508,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="23" width="1393" height="877" extended-state="6" />
+    <frame x="39" y="23" width="1401" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1080681" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13612951" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20764332" sideWeight="0.15526122" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -288,6 +530,26 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20764332" sideWeight="0.15526122" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866243" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23949045" sideWeight="0.8447388" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1080681" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10743193" sideWeight="0.36767036" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -477,14 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gilbert_wrapper.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/psychopy/app/stdOutRich.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
@@ -501,41 +755,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
+    <entry file="file://$PROJECT_DIR$/gilbert_wrapper.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="97" column="29" lean-forward="false" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snakes.py">
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3780">
-          <caret line="252" column="22" lean-forward="false" selection-start-line="252" selection-start-column="22" selection-end-line="252" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="213" column="23" lean-forward="false" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+        <state relative-caret-position="440">
+          <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
+    <entry file="file://$PROJECT_DIR$/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-280">
-          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="577" column="21" lean-forward="false" selection-start-line="577" selection-start-column="21" selection-end-line="577" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="126" column="18" lean-forward="true" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

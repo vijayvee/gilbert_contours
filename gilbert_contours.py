@@ -112,7 +112,7 @@ def draw_lines_row(win, win2, circle, positions, args,
 def accumulate_meta(array, subpath, filename, randomContour, contrast, window_size, shearAngle, length, curr_ecc, nimg):
     if length is None:
         length = -1 # DEFAULT FOR NONE CASE
-    array += [[subpath, filename, randomContour, contrast, window_size, shearAngle, length, curr_ecc, nimg]]
+    array += [[subpath, filename, nimg, shearAngle, contrast, window_size, randomContour, length, curr_ecc]]
     return array
     # GENERATED ARRAY IS NATURALLY SORTED BY THE ORDER IN WHICH IMGS ARE CREATED.
     # IN TRAIN OR TEST TIME CALL np.random.shuffle(ARRAY)

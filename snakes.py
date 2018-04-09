@@ -26,11 +26,17 @@ def save_metadata(metadata, contour_path, batch_id):
     np.save(os.path.join(metadata_path,metadata_fn), metadata)
 
 # Accumulate metadata
-def accumulate_meta(array, subpath, filename, args, nimg):
-    array += [[subpath, filename,
-               args.contour_length, args.distractor_length, args.num_distractor_contours, args.continuity,
-               args.paddle_length, args.paddle_thickness, args.paddle_margin,
-               nimg]]
+def accumulate_meta(array, subpath, filename, args, nimg, paddle_margin = None):
+    if paddle_margin is None:
+        # OLD VERSION
+        array += [[subpath, filename, nimg,
+                   args.continuity, args.contour_length, args.distractor_length, args.num_distractor_contours,
+                   args.paddle_length, args.paddle_thickness, args.paddle_margin]]
+    else:
+        # NEW VERSION
+        array += [[subpath, filename, nimg,
+                   args.continuity, args.contour_length, args.distractor_length, args.num_distractor_contours,
+                   args.paddle_length, args.paddle_thickness, paddle_margin, len(args.paddle_contrast_list)]]
     return array
     # GENERATED ARRAY IS NATURALLY SORTED BY THE ORDER IN WHICH IMGS ARE CREATED.
     # IN TRAIN OR TEST TIME CALL np.random.shuffle(ARRAY)
@@ -38,6 +44,7 @@ def accumulate_meta(array, subpath, filename, args, nimg):
 def make_many_snakes(image, mask,
                      num_snakes, max_snake_trial,
                      num_segments, segment_length, thickness, margin, continuity,
+                     contrast_list,
                      max_segment_trial,
                      aa_scale,
                      display_final = False, display_snake = False, display_segment = False,
@@ -55,6 +62,7 @@ def make_many_snakes(image, mask,
             curr_image, curr_mask, success = \
             make_snake(curr_image, curr_mask,
                        num_segments, segment_length, thickness, margin, continuity,
+                       contrast_list,
                        max_segment_trial,
                        aa_scale, display_snake, display_segment, allow_shorter_snakes, stop_with_availability)
             if success is False:
@@ -62,7 +70,7 @@ def make_many_snakes(image, mask,
             else:
                 break
         if snake_retry_count > max_snake_trial:
-            print('Exceeded max # of snake re-rendering.')
+            #print('Exceeded max # of snake re-rendering.')
             if not allow_incomplete:
                 print('Required # snakes unmet. Aborting')
                 return None, None
@@ -94,7 +102,8 @@ def find_available_coordinates(mask, margin):
 
 def make_snake(image, mask,
                num_segments, segment_length, thickness, margin, continuity,
-                max_segment_trial,aa_scale,
+               contrast_list,
+               max_segment_trial, aa_scale,
                display_snake = False, display_segment = False,
                allow_shorter_snakes=False, stop_with_availability=None):
     # set recurring state variables
@@ -103,18 +112,29 @@ def make_snake(image, mask,
     current_mask = mask.copy()
     # draw initial segment
     for isegment in range(1):
+        num_possible_contrasts = len(contrast_list)
+        if num_possible_contrasts>0:
+            contrast_index = np.random.randint(low=0, high=num_possible_contrasts)
+        else:
+            contrast_index = 0
+        contrast = contrast_list[contrast_index]
         current_image, current_mask, current_segment_mask, current_pivot, current_orientation, success \
         = seed_snake(current_image, current_mask,
-                     max_segment_trial,segment_length, thickness, margin,
+                     max_segment_trial,segment_length, thickness, margin, contrast,
                      aa_scale= aa_scale, display=display_segment, stop_with_availability=stop_with_availability)
         if success is False:
             return image, mask, False
     # sequentially add segments
     for isegment in range(num_segments-1):
+        if num_possible_contrasts>0:
+            contrast_index = np.random.randint(low=0, high=num_possible_contrasts)
+        else:
+            contrast_index = 0
+        contrast = contrast_list[contrast_index]
         current_image, current_mask, current_segment_mask, current_pivot, current_orientation, success \
         = extend_snake(list(current_pivot), current_orientation, current_segment_mask,
                          current_image, current_mask, max_segment_trial,
-                         segment_length, thickness, margin, continuity,
+                         segment_length, thickness, margin, continuity, contrast,
                          aa_scale = aa_scale,
                          display=display_segment,
                          forced_current_pivot=None)
@@ -137,7 +157,7 @@ def make_snake(image, mask,
 
 # last_pivot: coordinate of the anchor of two segments ago
 def seed_snake(image, mask,
-               max_segment_trial, length, thickness, margin,
+               max_segment_trial, length, thickness, margin, contrast,
                aa_scale, display = False, stop_with_availability=None):
 
     struct_shape = ((length+margin)*2+1, (length+margin)*2+1)
@@ -193,7 +213,7 @@ def seed_snake(image, mask,
     if trial_count > max_segment_trial:
         return image, mask, np.zeros_like(mask), None, None, False
 
-    l_im, m_im = draw_line_n_mask((mask.shape[0], mask.shape[1]), sampled_tail, sampled_orientation_in_rad, length, thickness, margin, aa_scale)
+    l_im, m_im = draw_line_n_mask((mask.shape[0], mask.shape[1]), sampled_tail, sampled_orientation_in_rad, length, thickness, margin, aa_scale, contrast_scale=contrast)
     image = np.maximum(image, l_im)
 
     if display:
@@ -214,7 +234,7 @@ def seed_snake(image, mask,
 # last_pivot: coordinate of the anchor of two segments ago
 def extend_snake(last_pivot, last_orientation, last_segment_mask,
                  image, mask, max_segment_trial,
-                 length, thickness, margin, continuity,
+                 length, thickness, margin, continuity, contrast,
                  aa_scale,
                  display = False,
                  forced_current_pivot=None):
@@ -239,7 +259,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
             new_orientation = unique_orientations[sampled_index]
             new_head = unique_coords[sampled_index, :]  # find the smallest index whose value is greater than rand
             flipped_orientation = flip_by_pi(new_orientation)
-            l_im, m_im = draw_line_n_mask((mask.shape[0],mask.shape[1]), new_head, flipped_orientation, length, thickness, margin, aa_scale)
+            l_im, m_im = draw_line_n_mask((mask.shape[0],mask.shape[1]), new_head, flipped_orientation, length, thickness, margin, aa_scale, contrast_scale=contrast)
             trial_count += 1
             if np.max(mask+m_im) < 1.8:
                 segment_found = True
@@ -321,7 +341,7 @@ def get_coords_cmf(last_endpoint, last_orientation, step_length, mask, continuit
     return unique_coords, unique_orientations, cmf, pmf
 
 
-def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margin, aa_scale):
+def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margin, aa_scale, contrast_scale=1.0):
     # sanity check
     if np.round(thickness*aa_scale) - thickness*aa_scale != 0.0:
         raise ValueError('thickness does not break even.')
@@ -337,17 +357,20 @@ def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margi
                     (miniline_blown_head[1],miniline_blown_head[0])],
                    fill='white', width=miniline_blown_thickness)
 
-    # resize with interpolation
+    # resize with interpolation + apply contrast
     miniline_shape = (length + int(np.ceil(thickness)) + margin) *2 + 1
     miniline_im = scipy.misc.imresize(np.array(miniline_blown_im),
                                       (miniline_shape, miniline_shape),
                                       interp='lanczos').astype(np.float)/255
+    if contrast_scale != 1.0:
+        miniline_im *= contrast_scale
 
     # draw a mask
     minimask_blown_im = binary_dilate(miniline_blown_im, margin*aa_scale, type='1', scale=1.).astype(np.uint8)
     minimask_im = scipy.misc.imresize(np.array(minimask_blown_im),
                         (miniline_shape, miniline_shape),
                         interp='lanczos').astype(np.float) / 255
+
     #minimask_im = binary_dilate(miniline_im, margin, type='1', scale=1.).astype(np.uint8)
 
     # place in original shape
@@ -458,7 +481,8 @@ def test():
     aa_scale = 4
     segment_length = 5
     thickness = 1.5
-    margin = 4
+    contrast_list = [1.0]
+    margin = 0
 
     image = np.zeros((imsize, imsize))
     mask = np.zeros((imsize, imsize))
@@ -471,18 +495,17 @@ def test():
     max_segment_trial = 2
     image1, mask = make_many_snakes(image, mask,
                                     num_snakes, max_snake_trial,
-                                    num_segments, segment_length, thickness, margin, continuity,
+                                    num_segments, segment_length, thickness, margin, continuity, contrast_list,
                                     max_segment_trial, aa_scale,
                                     display_final=False, display_snake=False, display_segment=False,
                                     allow_incomplete=False, allow_shorter_snakes=False)
-
     num_segments = distractor_paddle_length
     num_snakes = num_distractor_paddles
     max_snake_trial = 3
     max_segment_trial = 2
     image2, mask = make_many_snakes(image1, mask,
                                     num_snakes, max_snake_trial,
-                                    num_segments, segment_length, thickness, margin, continuity,
+                                    num_segments, segment_length, thickness, margin, continuity, contrast_list,
                                     max_segment_trial, aa_scale,
                                     display_final=False, display_snake=False, display_segment=False,
                                     allow_incomplete=False, allow_shorter_snakes=False)
@@ -492,7 +515,7 @@ def test():
     max_segment_trial = 2
     image3, _ = make_many_snakes(image2, mask,
                                  num_snakes, max_snake_trial,
-                                 num_segments, segment_length, thickness, margin, continuity,
+                                 num_segments, segment_length, thickness, margin, continuity, contrast_list,
                                  max_segment_trial, aa_scale,
                                  display_final=False, display_snake=False, display_segment=False,
                                  allow_incomplete=True, allow_shorter_snakes=False, stop_with_availability=0.01)
@@ -530,14 +553,35 @@ def from_wrapper(args):
             os.makedirs(os.path.join(args.contour_path, gt_sub_path))
     if args.save_metadata:
         metadata = []
+        # CHECK IF METADATA FILE ALREADY EXISTS
+        metadata_path = os.path.join(args.contour_path, 'metadata')
+        if not os.path.exists(metadata_path):
+            os.makedirs(metadata_path)
+        metadata_fn = str(args.batch_id) + '.npy'
+        metadata_full = os.path.join(metadata_path, metadata_fn)
+        if os.path.exists(metadata_full):
+            print('Metadata file already exists.')
+            return
 
     while (iimg < args.n_images):
         print('Image# : %s'%(iimg))
+
+        # Sample paddle margin
+        num_possible_margins = len(args.paddle_margin_list)
+        if num_possible_margins > 0:
+            margin_index = np.random.randint(low=0, high=num_possible_margins)
+        else:
+            margin_index = 0
+        margin = args.paddle_margin_list[margin_index]
+        base_num_paddles = 400
+        num_paddles_factor = 1./((7.5 + 13*margin + 4*margin*margin)/123.5)
+        total_num_paddles = int(base_num_paddles*num_paddles_factor)
+
         image = np.zeros((args.window_size[0], args.window_size[1]))
         mask = np.zeros((args.window_size[0], args.window_size[1]))
         target_im, mask = make_many_snakes(image, mask,
                                            1, args.max_target_contour_retrial,
-                                           args.contour_length, args.paddle_length, args.paddle_thickness, args.paddle_margin, args.continuity,
+                                           args.contour_length, args.paddle_length, args.paddle_thickness, margin, args.continuity, args.paddle_contrast_list,
                                            args.max_paddle_retrial, args.antialias_scale,
                                            display_final=False, display_snake=False, display_segment=False,
                                            allow_incomplete=False, allow_shorter_snakes=False)
@@ -545,16 +589,16 @@ def from_wrapper(args):
             continue
         interm_im, mask = make_many_snakes(target_im, mask,
                                            args.num_distractor_contours, args.max_distractor_contour_retrial,
-                                           args.distractor_length, args.paddle_length, args.paddle_thickness, args.paddle_margin, args.continuity,
+                                           args.distractor_length, args.paddle_length, args.paddle_thickness, margin, args.continuity, args.paddle_contrast_list,
                                            args.max_paddle_retrial, args.antialias_scale,
                                            display_final=False, display_snake=False, display_segment=False,
                                            allow_incomplete=False, allow_shorter_snakes=False)
         if (interm_im is None):
             continue
-        num_bits = 400 - args.contour_length - args.distractor_length * args.num_distractor_contours
+        num_bits = total_num_paddles - args.contour_length - args.distractor_length * args.num_distractor_contours
         final_im, mask = make_many_snakes(interm_im, mask,
                                           num_bits, 10,
-                                          1, args.paddle_length, args.paddle_thickness, args.paddle_margin, args.continuity,
+                                          1, args.paddle_length, args.paddle_thickness, margin, args.continuity, args.paddle_contrast_list,
                                           args.max_paddle_retrial, args.antialias_scale,
                                           display_final=False, display_snake=False, display_segment=False,
                                           allow_incomplete=True, allow_shorter_snakes=False, stop_with_availability=0.01)
@@ -580,7 +624,7 @@ def from_wrapper(args):
             fn = "gt_%s.png"%(iimg)
             scipy.misc.imsave(os.path.join(args.contour_path, gt_sub_path, fn), target_im)
         if (args.save_metadata):
-            metadata = accumulate_meta(metadata, contour_sub_path, fn, args, iimg)
+            metadata = accumulate_meta(metadata, contour_sub_path, fn, args, iimg, paddle_margin=margin)
             ## TODO: GT IS NOT INCLUDED IN METADATA
         iimg += 1
 
