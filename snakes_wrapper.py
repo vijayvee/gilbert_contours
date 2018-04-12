@@ -107,7 +107,7 @@ for nc in [10, 20, 30, 40]:
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.contour_length = 1
     snakes.from_wrapper(args)
-args.contour_length = 15
+    args.contour_length = 15
 args.paddle_contrast_list = [1.]
 
 ################################# DS: snake margin range
@@ -124,7 +124,7 @@ for pm in [[3,4,5], [2,3,4,5,6], [1,2,3,4,5,6,7]]:
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.contour_length = 1
     snakes.from_wrapper(args)
-args.contour_length = 15
+    args.contour_length = 15
 args.paddle_margin_list = [4]
 
 

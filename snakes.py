@@ -472,17 +472,17 @@ def imsum(im1, im2, bw='w'):
 def test():
     t = time.time()
 
-    target_paddle_length = 30  # from 8 to 25
+    target_paddle_length = 25  # from 8 to 25
     distractor_paddle_length = target_paddle_length / 2
-    num_distractor_paddles = 4
-    continuity = 1  # from 1 to 2.5 (expect occasional failures at high values)
+    num_distractor_paddles = 6 #4
+    continuity = 1.5 #1  # from 1 to 2.5 (expect occasional failures at high values)
 
     imsize = 256
     aa_scale = 4
     segment_length = 5
     thickness = 1.5
     contrast_list = [1.0]
-    margin = 0
+    margin = 4
 
     image = np.zeros((imsize, imsize))
     mask = np.zeros((imsize, imsize))
@@ -501,7 +501,7 @@ def test():
                                     allow_incomplete=False, allow_shorter_snakes=False)
     num_segments = distractor_paddle_length
     num_snakes = num_distractor_paddles
-    max_snake_trial = 3
+    max_snake_trial = 4
     max_segment_trial = 2
     image2, mask = make_many_snakes(image1, mask,
                                     num_snakes, max_snake_trial,
@@ -510,7 +510,7 @@ def test():
                                     display_final=False, display_snake=False, display_segment=False,
                                     allow_incomplete=False, allow_shorter_snakes=False)
     num_segments = 1
-    num_snakes = 400 - target_paddle_length - num_distractor_paddles * distractor_paddle_length
+    num_snakes = 0 #400 - target_paddle_length - num_distractor_paddles * distractor_paddle_length
     max_snake_trial = 3
     max_segment_trial = 2
     image3, _ = make_many_snakes(image2, mask,

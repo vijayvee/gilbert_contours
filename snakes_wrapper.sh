@@ -1,6 +1,6 @@
 #!/bin/bash
-n_machines=1
-n_totl_images=5000
+n_machines=400
+n_totl_images=1000000
 script_name='snakes_wrapper.py'
 username='jk9'
 
@@ -13,7 +13,7 @@ sbatch -J "$script_name[$i_machine]" <<EOF
 #!/bin/bash
 #SBATCH -p $PARTITION
 #SBATCH -n 2
-#SBATCH -t 40:00:00
+#SBATCH -t 48:00:00
 #SBATCH --mem=8G
 #SBATCH --begin=now
 #SBATCH --qos=$QOS
