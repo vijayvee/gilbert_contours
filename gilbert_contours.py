@@ -148,12 +148,11 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     max_ecc = min(2*min_ecc, max_ecc)
     mean_ecc = (min_ecc + max_ecc)/2.
     scale_ecc = max_ecc - min_ecc
-    norm_ecc = stats.truncnorm((min_ecc - mean_ecc)/scale_ecc,
-                                 (max_ecc-mean_ecc)/scale_ecc,
-                                 loc=mean_ecc, scale=scale_ecc)
-
+    norm_ecc = get_normal_dist(min_ecc, max_ecc)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearAngle = args.shear_val #min(args.shear_range), max(args.shear_range)
+    shearMin, shearMax = shearAngle-args.global_spacing, shearAngle
+    shearNorm = get_normal_dist(shearMin, shearMax)
     print "Random contrast: %s"%(args.random_contrast)
     contrast = args.distractor_contrast
     length = args.contour_length
@@ -161,6 +160,7 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     make_contours_dir(os.path.join(args.contour_path, image_sub_path))
     #make_contours_dir(os.path.join(args.color_path, image_sub_path))
     for nimg in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
+        shearAngle = shearNorm.rvs()
         viewOri = np.random.uniform(0,360)
         win.viewOri = viewOri
         if win2 is not None:
