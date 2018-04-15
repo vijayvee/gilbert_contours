@@ -12,7 +12,7 @@ from geometric_transformations import *
 def make_contours_dir(contour_path):
     """Create directory to save generated contours"""
     if not os.path.exists(contour_path):
-        os.mkdir(contour_path)
+        os.makedirs(contour_path)
 
 def get_contour_center(a_contour, curr_radius):
     """Get position of the center of generated contour"""
