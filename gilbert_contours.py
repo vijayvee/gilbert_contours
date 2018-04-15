@@ -82,22 +82,21 @@ def draw_lines_row(win, win2, circle, positions, args,
                 if not randomContrast:
                     contrast = 1.
                 else:
-                    contrast = normContrast.rvs() #np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
+                    if args.uniform_contrast:
+                        contrast = np.random.uniform(minContrast, maxContrast)
+                    else:
+                        contrast = normContrast.rvs() #np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
                 contour=True
             else:
                 alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                 minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
-                #normTheta = get_normal_dist(minTheta, maxTheta)
-                #if args.dist_uniform:
                 ori_orth = np.random.uniform(minTheta, maxTheta)
-                #else:
-                #    ori_orth = normTheta.rvs()
                 if ori_orth<0:
                     ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                 if not randomContrast:
                     contrast = distractor_contrast
                 else:
-                    if args.dist_uniform:
+                    if args.uniform_contrast:
                         contrast = np.random.uniform(minContrast, maxContrast)
                     else:
                         contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)

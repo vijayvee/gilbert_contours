@@ -53,6 +53,9 @@ def parse_arguments():
             '--uniform', dest='dist_uniform', type=bool,
             default=False, help='Random distributions uniform? (True - Uniform. False - Normal.)')
     parser.add_argument(
+            '--uniform_contrast', dest='uniform_contrast', type=bool,
+            default=False, help='Contrast distribution uniform? (True - Uniform. False - Normal.)')
+    parser.add_argument(
             '--scale_contrast', dest='scale_contrast', type=float,
             default=0.0, help='Standard deviation of contrast range')
     parser.add_argument(
