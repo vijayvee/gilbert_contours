@@ -44,6 +44,9 @@ def parse_arguments():
             '--color', dest='color', type=bool,
             default=False, help='Print contours in color? (True/False)')
     parser.add_argument(
+            '--just_display', dest='just_display', type=bool,
+            default=False, help='Just display but don\'t save? (True/False)')
+    parser.add_argument(
             '--random_rotations', dest='rotate', type=bool,
             default=False, help='Rotate window randomly? (True/False)')
     parser.add_argument(
@@ -145,38 +148,42 @@ def main_drawing_loop(win, args):
     min_ecc, max_ecc = get_eccentricity_bounds(curr_radius=args.curr_radius,
                                 gilb_radius=43.8/2, gilb_min_ecc=2.4,
                                 gilb_max_ecc=8.4)
+    max_ecc = min(2*min_ecc, max_ecc)
+    norm_ecc = get_normal_dist(min_ecc, max_ecc)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
-    shearLow, shearHigh = args.shear_range
-
-    for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
-        for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
-            if args.rotate:
-                win.viewOri = np.random.uniform(0,360)
-            shearAngle = np.random.uniform(low=shearLow, high=shearHigh)
-            curr_ecc = np.random.uniform(min_ecc, max_ecc)
-            ecc_lines = curr_ecc*linesPerDegree
-            a_contour = np.pi/4 #gilbert stimuli have only 45' snakes
-            pos = get_contour_center(a_contour, curr_ecc)
-            pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
-            positions = [(j,i) for i in np.arange(-args.skew_slack,
-                                                    args.skew_slack,
-                                                    args.global_spacing)
-                               for j in np.arange(-args.skew_slack,
-                                                    args.skew_slack,
-                                                    args.global_spacing)]
-            print "Contour center: %s,%s"%(pos)
-            positions = np.array(positions).reshape((
-                                                nLinesOnDiameter,
-                                                nLinesOnDiameter,2))
-            draw_lines_row(win, circle, positions, args,
-                            color=args.color,length=length,
-                            shearAngle=shearAngle,size=args.paddle_length,
-                            contourPosition=pos)
-            if args.fixation_cross:
-                draw_fixation(win,0,0)
-            win.flip()
-            if args.pause_display:
-                import ipdb; ipdb.set_trace()
+    #shearLow, shearHigh = args.shear_range
+    shearAngle = args.shear_range[0]
+    length = args.contour_lengths[0]
+    minViewOri = 0
+    maxViewOri = 360
+    normViewOri = get_normal_dist(minViewOri, maxViewOri)
+    #for length in tqdm(args.contour_lengths,total=1, desc='Generating multiple length contours'):
+    for _ in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
+        if args.rotate:
+            win.viewOri = normViewOri.rvs()
+        curr_ecc = norm_ecc.rvs()
+        ecc_lines = curr_ecc*linesPerDegree
+        a_contour = np.pi/4 #gilbert stimuli have only 45' snakes
+        pos = get_contour_center(a_contour, curr_ecc)
+        pos = nLinesOnRadius+int(linesPerDegree*(pos[1])), nLinesOnRadius-int(linesPerDegree*(pos[0]))
+        positions = [(j,i) for i in np.arange(-args.skew_slack,
+                                                args.skew_slack,
+                                                args.global_spacing)
+                           for j in np.arange(-args.skew_slack,
+                                                args.skew_slack,
+                                                args.global_spacing)]
+        print "Contour center: %s,%s"%(pos)
+        positions = np.array(positions).reshape((
+                                            nLinesOnDiameter,
+                                            nLinesOnDiameter,2))
+        draw_lines_row(win, circle, positions, args,
+                        color=args.color,length=length,
+                        shearAngle=shearAngle,size=args.paddle_length,
+                        contourPosition=pos)
+        win.flip()
+        if args.pause_display:
+            import ipdb; ipdb.set_trace()
+        if not args.just_display:
             win.getMovieFrame()
             win.saveMovieFrames("%s/sample_%s_shear_%s_length%s_eccentricity_%s.png"
                                 %(args.contour_path,args.window_size[0],

@@ -55,6 +55,7 @@ def draw_lines_row(win, win2, circle, positions, args,
                     randomContrast=True, zigzag=False, zigzagAngle=0,
                     distractor_contrast=1.0):
     """Function to draw the main contour line segments."""
+    return_positions, return_orientations = [], []
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     if zigzag:
         includeContour = fillIncludeContour_zigzag(nRows=positions.shape[0],
@@ -109,10 +110,12 @@ def draw_lines_row(win, win2, circle, positions, args,
                         contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)
                 ori = ori_orth
                 contour=False
-
+            return_positions.append(pos)
+            return_orientations.append(ori)
             draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
             if win2 is not None:
                 draw_line(win2, pos=pos, contour=contour, color=True, size=size, ori=ori, center=center, contrast=contrast)
+    return return_positions, return_orientations
 
 def main_drawing_loop(win, args, win2=None):
     #Main loop for rendering contours
@@ -173,7 +176,7 @@ def main_drawing_loop(win, args, win2=None):
                     positions = np.array(positions).reshape((
                                                         nLinesOnDiameter,
                                                         nLinesOnDiameter,2))
-                    draw_lines_row(win, win2, circle, positions, args,
+                    return_positions, return_orientations = draw_lines_row(win, win2, circle, positions, args,
                                     color=args.color,length=length,
                                     shearAngle=shearAngle,size=args.paddle_length,
                                     randomContrast=args.random_contrast,
@@ -236,3 +239,4 @@ def main():
 
 if __name__=="__main__":
     main()
+vdisplay.stop()
