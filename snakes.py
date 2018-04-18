@@ -472,10 +472,10 @@ def imsum(im1, im2, bw='w'):
 def test():
     t = time.time()
 
-    target_paddle_length = 25  # from 8 to 25
-    distractor_paddle_length = target_paddle_length / 2
-    num_distractor_paddles = 6 #4
-    continuity = 1.5 #1  # from 1 to 2.5 (expect occasional failures at high values)
+    target_paddle_length =12  # from 6 to 18
+    distractor_paddle_length = target_paddle_length / 3
+    num_distractor_paddles = int(33*(9./target_paddle_length)) #4
+    continuity = 2.4 #1  # from 1 to 2.5 (expect occasional failures at high values)
 
     imsize = 256
     aa_scale = 4
@@ -595,15 +595,18 @@ def from_wrapper(args):
                                            allow_incomplete=False, allow_shorter_snakes=False)
         if (interm_im is None):
             continue
-        num_bits = total_num_paddles - args.contour_length - args.distractor_length * args.num_distractor_contours
-        final_im, mask = make_many_snakes(interm_im, mask,
-                                          num_bits, 10,
-                                          1, args.paddle_length, args.paddle_thickness, margin, args.continuity, args.paddle_contrast_list,
-                                          args.max_paddle_retrial, args.antialias_scale,
-                                          display_final=False, display_snake=False, display_segment=False,
-                                          allow_incomplete=True, allow_shorter_snakes=False, stop_with_availability=0.01)
-        if (final_im is None):
-            continue
+        if args.use_single_paddles is not False:
+            num_bits = args.use_single_paddles - args.contour_length - args.distractor_length * args.num_distractor_contours
+            final_im, mask = make_many_snakes(interm_im, mask,
+                                              num_bits, 10,
+                                              1, args.paddle_length, args.paddle_thickness, margin, args.continuity, args.paddle_contrast_list,
+                                              args.max_paddle_retrial, args.antialias_scale,
+                                              display_final=False, display_snake=False, display_segment=False,
+                                              allow_incomplete=True, allow_shorter_snakes=False, stop_with_availability=0.01)
+            if (final_im is None):
+                continue
+        else:
+            final_im = interm_im
 
         if (args.pause_display):
             plt.figure(figsize=(10, 10))

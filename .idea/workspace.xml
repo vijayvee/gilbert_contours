@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="654f003c-8f5a-4f4d-bef2-15ba800a6c68" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gilbert_contours.iml" afterPath="$PROJECT_DIR$/.idea/gilbert_contours.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes.py" afterPath="$PROJECT_DIR$/snakes.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes_wrapper.py" afterPath="$PROJECT_DIR$/snakes_wrapper.py" />
@@ -26,8 +28,8 @@
       <file leaf-file-name="gilbert_contours.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+            <state relative-caret-position="2280">
+              <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
               <folding>
                 <element signature="e#18#68#0" expanded="true" />
               </folding>
@@ -39,17 +41,17 @@
         <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+              <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snakes.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="snakes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snakes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="593" column="106" lean-forward="true" selection-start-line="593" selection-start-column="106" selection-end-line="593" selection-end-column="106" />
+            <state relative-caret-position="-1045">
+              <caret line="476" column="35" selection-start-line="476" selection-start-column="35" selection-end-line="476" selection-end-column="35" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -57,13 +59,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snakes_wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="snakes_wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1590">
-              <caret line="106" column="11" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+            <state relative-caret-position="-34">
+              <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +74,8 @@
       <file leaf-file-name="snakes_wrapper.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            <state relative-caret-position="475">
+              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -137,17 +139,27 @@
         <option value="$PROJECT_DIR$/snake_wrapper.sh.py" />
         <option value="$PROJECT_DIR$/snake_wrapper.sh" />
         <option value="$PROJECT_DIR$/scratch.py" />
+        <option value="$PROJECT_DIR$/snakes.py" />
         <option value="$PROJECT_DIR$/snakes_wrapper.py" />
         <option value="$PROJECT_DIR$/snakes_wrapper.sh" />
-        <option value="$PROJECT_DIR$/snakes.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="143" />
-    <option name="y" value="23" />
-    <option name="width" value="1177" />
-    <option name="height" value="813" />
+    <option name="x" value="667" />
+    <option name="y" value="62" />
+    <option name="width" value="1251" />
+    <option name="height" value="1292" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -164,10 +176,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gilbert_contours" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="gilbert_contours" />
@@ -180,11 +196,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -222,7 +241,6 @@
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
@@ -266,15 +284,23 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="gilbert_contours" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -287,26 +313,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="143" y="23" width="1177" height="813" extended-state="0" />
+    <frame x="667" y="62" width="1251" height="1292" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16563876" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15491803" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20764332" sideWeight="0.15526122" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2662968" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23855756" sideWeight="0.8447388" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33869526" sideWeight="0.8447388" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10743193" sideWeight="0.36767036" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -342,12 +369,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/snakes_wrapper.py</url>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
@@ -355,8 +376,54 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2280">
+          <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+          <folding>
+            <element signature="e#18#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2014">
+          <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
-          <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+          <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
@@ -366,7 +433,7 @@
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -374,7 +441,7 @@
     <entry file="file://$PROJECT_DIR$/snakes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7800">
-          <caret line="520" column="42" lean-forward="false" selection-start-line="520" selection-start-column="42" selection-end-line="520" selection-end-column="42" />
+          <caret line="520" column="42" selection-start-line="520" selection-start-column="42" selection-end-line="520" selection-end-column="42" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -384,9 +451,9 @@
     <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1590">
-          <caret line="106" column="11" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+          <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -394,7 +461,7 @@
     <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -402,7 +469,7 @@
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4020">
-          <caret line="268" column="20" lean-forward="false" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
+          <caret line="268" column="20" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
@@ -412,14 +479,14 @@
     <entry file="file://$PROJECT_DIR$/combine_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1365">
-          <caret line="91" column="9" lean-forward="false" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -427,7 +494,7 @@
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4864">
-          <caret line="268" column="20" lean-forward="false" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
+          <caret line="268" column="20" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
@@ -437,14 +504,14 @@
     <entry file="file://$PROJECT_DIR$/psychopy_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -452,14 +519,14 @@
     <entry file="file://$PROJECT_DIR$/combine_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
@@ -469,7 +536,7 @@
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
-          <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+          <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -477,21 +544,21 @@
     <entry file="file://$PROJECT_DIR$/combine_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/argparser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="35" />
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -499,70 +566,58 @@
     <entry file="file://$PROJECT_DIR$/gilbert_test_stimuli.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/argparser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_coordinates.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/combine_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/psychopy_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-193">
-          <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/psychopy/app/stdOutRich.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="139" column="8" lean-forward="false" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/psychopy/visual/window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1691">
-          <caret line="1057" column="34" lean-forward="false" selection-start-line="1057" selection-start-column="34" selection-end-line="1057" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/psychopy/app/stdOutRich.py" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/psychopy/visual/window.py" />
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="12" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+        <state relative-caret-position="2280">
+          <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
           </folding>
@@ -573,35 +628,35 @@
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1590">
-          <caret line="106" column="11" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/snakes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="593" column="106" lean-forward="true" selection-start-line="593" selection-start-column="106" selection-end-line="593" selection-end-column="106" />
+        <state relative-caret-position="-1045">
+          <caret line="476" column="35" selection-start-line="476" selection-start-column="35" selection-end-line="476" selection-end-column="35" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
