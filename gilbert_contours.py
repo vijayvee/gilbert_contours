@@ -15,8 +15,6 @@ from psychopy_utils import *
 
 """Code to create the snakes dataset for association fields"""
 
-
-
 def fillIncludeContour_nontan(nRows,nCols, pos, length=5):
     #Include contours by relaxing the tangential contour path condition
     includeContour = np.zeros((nRows,nCols))
@@ -50,6 +48,7 @@ def draw_lines_row(win, win2, circle, positions, args,
                     randomContrast=True, zigzag=False, zigzagAngle=0,
                     distractor_contrast=1.0):
     """Function to draw the main contour line segments."""
+    return_positions, return_orientations = [], []
     #Set includeContour[i,j]=1. if position i,j of contour grid is along the contour path
     if zigzag:
         includeContour = fillIncludeContour_zigzag(nRows=positions.shape[0],
@@ -83,31 +82,32 @@ def draw_lines_row(win, win2, circle, positions, args,
                 if not randomContrast:
                     contrast = 1.
                 else:
-                    contrast = normContrast.rvs() #np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
+                    if args.uniform_contrast:
+                        contrast = np.random.uniform(minContrast, maxContrast)
+                    else:
+                        contrast = normContrast.rvs() #np.random.uniform(-args.distractor_contrast, args.distractor_contrast)
                 contour=True
             else:
                 alpha, beta = np.abs(ori_orth+45), np.abs(ori_orth+90) #Driving neighbouring 'distractor' lines to be non-collinear
                 minTheta, maxTheta = min(alpha,beta), max(alpha,beta) #Range of orientation of new 'distractor' line segment
-                #normTheta = get_normal_dist(minTheta, maxTheta)
-                #if args.dist_uniform:
                 ori_orth = np.random.uniform(minTheta, maxTheta)
-                #else:
-                #    ori_orth = normTheta.rvs()
                 if ori_orth<0:
                     ori_orth += 360 #If angle negative, add 360. <= a = 2.pi + a
                 if not randomContrast:
                     contrast = distractor_contrast
                 else:
-                    if args.dist_uniform:
+                    if args.uniform_contrast:
                         contrast = np.random.uniform(minContrast, maxContrast)
                     else:
                         contrast = normContrast.rvs() #np.random.uniform(low=0., high=1.0)
                 ori = ori_orth
                 contour=False
-
+            return_positions.append(pos)
+            return_orientations.append(ori)
             draw_line(win, pos=pos, contour=contour, color=color, size=size, ori=ori, center=center, contrast=contrast)
             if win2 is not None:
                 draw_line(win2, pos=pos, contour=contour, color=True, size=size, ori=ori, center=center, contrast=contrast)
+    return return_positions, return_orientations
 
 def accumulate_meta(array, subpath, filename, randomContour, contrast, window_size, shearAngle, length, curr_ecc, nimg):
     if length is None:
@@ -147,12 +147,11 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     max_ecc = min(2*min_ecc, max_ecc)
     mean_ecc = (min_ecc + max_ecc)/2.
     scale_ecc = max_ecc - min_ecc
-    norm_ecc = stats.truncnorm((min_ecc - mean_ecc)/scale_ecc,
-                                 (max_ecc-mean_ecc)/scale_ecc,
-                                 loc=mean_ecc, scale=scale_ecc)
-
+    norm_ecc = get_normal_dist(min_ecc, max_ecc)
     print "Eccentricity bounds: %s %s"%(min_ecc ,max_ecc)
     shearAngle = args.shear_val #min(args.shear_range), max(args.shear_range)
+    shearMin, shearMax = shearAngle-args.global_spacing, shearAngle
+    shearNorm = get_normal_dist(shearMin, shearMax)
     print "Random contrast: %s"%(args.random_contrast)
     contrast = args.distractor_contrast
     length = args.contour_length
@@ -160,6 +159,7 @@ def main_drawing_loop(win, args, win2=None, metadata=None): ###########
     make_contours_dir(os.path.join(args.contour_path, image_sub_path))
     #make_contours_dir(os.path.join(args.color_path, image_sub_path))
     for nimg in tqdm(range(args.n_images),desc='Generating contours for length %s'%(length)):
+        shearAngle = shearNorm.rvs()
         viewOri = np.random.uniform(0,360)
         win.viewOri = viewOri
         if win2 is not None:
