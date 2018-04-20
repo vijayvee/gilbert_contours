@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="654f003c-8f5a-4f4d-bef2-15ba800a6c68" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gilbert_contours.iml" afterPath="$PROJECT_DIR$/.idea/gilbert_contours.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snakes_2.py" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes.py" afterPath="$PROJECT_DIR$/snakes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes_wrapper.py" afterPath="$PROJECT_DIR$/snakes_wrapper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snakes_wrapper.sh" afterPath="$PROJECT_DIR$/snakes_wrapper.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,10 +30,34 @@
       <file leaf-file-name="gilbert_contours.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2280">
               <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+=======
+            <state relative-caret-position="1620">
+              <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
               <folding>
                 <element signature="e#18#68#0" expanded="true" />
+                <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+                <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
               </folding>
             </state>
           </provider>
@@ -50,8 +76,25 @@
       <file leaf-file-name="snakes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snakes.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-1045">
               <caret line="476" column="35" selection-start-line="476" selection-start-column="35" selection-end-line="476" selection-end-column="35" />
+=======
+            <state relative-caret-position="413">
+              <caret line="659" column="0" lean-forward="true" selection-start-line="467" selection-start-column="0" selection-end-line="659" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="snakes_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/snakes_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -74,8 +117,13 @@
       <file leaf-file-name="snakes_wrapper.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="475">
               <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+=======
+            <state relative-caret-position="225">
+              <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
               <folding />
             </state>
           </provider>
@@ -116,8 +164,10 @@
       <find>thickness</find>
       <find>save</find>
       <find>dead</find>
-      <find>binary_dilate</find>
       <find>re-render</find>
+      <find>continuity</find>
+      <find>dilate</find>
+      <find>binary_dilate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,10 +192,16 @@
         <option value="$PROJECT_DIR$/snakes.py" />
         <option value="$PROJECT_DIR$/snakes_wrapper.py" />
         <option value="$PROJECT_DIR$/snakes_wrapper.sh" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/snakes.py" />
+        <option value="$PROJECT_DIR$/snakes_2.py" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="667" />
     <option name="y" value="62" />
     <option name="width" value="1251" />
@@ -160,6 +216,12 @@
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
+=======
+    <option name="x" value="182" />
+    <option name="y" value="23" />
+    <option name="width" value="1216" />
+    <option name="height" value="877" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -196,8 +258,13 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scope" />
       <pane id="Scratches" />
+=======
+      <pane id="Scratches" />
+      <pane id="Scope" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,17 +380,34 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="667" y="62" width="1251" height="1292" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15491803" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20764332" sideWeight="0.15526122" order="7" side_tool="true" content_ui="tabs" />
+=======
+    <frame x="182" y="23" width="1216" height="877" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20868824" sideWeight="0.63232964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2942675" sideWeight="0.16098808" order="7" side_tool="true" content_ui="tabs" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2662968" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26496816" sideWeight="0.758092" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33869526" sideWeight="0.8447388" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10743193" sideWeight="0.36767036" order="2" side_tool="true" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2942675" sideWeight="0.8390119" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10743193" sideWeight="0.36767036" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -376,32 +460,73 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2280">
           <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+=======
+        <state relative-caret-position="1620">
+          <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+          <folding>
+            <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="589">
           <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+=======
+        <state relative-caret-position="465">
+          <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/snakes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" column="11" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2014">
@@ -417,6 +542,23 @@
         <state relative-caret-position="285">
           <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8880">
+          <caret line="593" column="106" lean-forward="false" selection-start-line="593" selection-start-column="106" selection-end-line="593" selection-end-column="106" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
         </state>
       </provider>
     </entry>
@@ -426,6 +568,25 @@
           <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -472,6 +633,25 @@
           <caret line="268" column="20" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -497,6 +677,25 @@
           <caret line="268" column="20" selection-start-line="268" selection-start-column="20" selection-end-line="268" selection-end-column="20" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -529,6 +728,25 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -616,10 +834,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gilbert_contours.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2280">
           <caret line="120" column="59" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+=======
+        <state relative-caret-position="1620">
+          <caret line="120" column="59" lean-forward="false" selection-start-line="120" selection-start-column="59" selection-end-line="120" selection-end-column="59" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           <folding>
             <element signature="e#18#68#0" expanded="true" />
+            <marker date="1524248982474" expanded="true" signature="7888:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="7888:12124" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8460:8834" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="8974:9054" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9732:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="9882:10055" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10182:10426" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10483:10892" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10650:10797" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="10906:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11057:11238" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11367:11613" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11670:12088" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="11838:11993" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12138:12773" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12421:12533" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12798:13264" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="12912:13024" ph="..." />
+            <marker date="1524248982474" expanded="true" signature="13290:13522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -645,16 +887,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/snakes_wrapper.sh">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="475">
           <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+=======
+        <state relative-caret-position="225">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/snakes_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-34">
           <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+=======
+        <state relative-caret-position="413">
+          <caret line="659" column="0" lean-forward="true" selection-start-line="467" selection-start-column="0" selection-end-line="659" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snakes_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

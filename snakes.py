@@ -12,11 +12,6 @@ import time
 import cv2
 cv2.useOptimized()
 
-#class snakes(feeders.Feeder):
-
-def generate_snakes():
-    return
-
 def save_metadata(metadata, contour_path, batch_id):
     # Converts metadata (list of lists) into an nparray, and then saves
     metadata_path = os.path.join(contour_path, 'metadata')
@@ -54,6 +49,10 @@ def make_many_snakes(image, mask,
     curr_image = image.copy()
     curr_mask = mask.copy()
     isnake = 0
+
+    small_dilation_structs = generate_dilation_struct(margin)
+    large_dilation_structs = generate_dilation_struct(margin*aa_scale)
+
     if image is None:
         print('No image. Previous run probably failed.')
     while isnake < num_snakes:
@@ -61,7 +60,7 @@ def make_many_snakes(image, mask,
         while snake_retry_count <= max_snake_trial:
             curr_image, curr_mask, success = \
             make_snake(curr_image, curr_mask,
-                       num_segments, segment_length, thickness, margin, continuity,
+                       num_segments, segment_length, thickness, margin, continuity, small_dilation_structs, large_dilation_structs,
                        contrast_list,
                        max_segment_trial,
                        aa_scale, display_snake, display_segment, allow_shorter_snakes, stop_with_availability)
@@ -91,7 +90,8 @@ def find_available_coordinates(mask, margin):
         return (np.array([]),np.array([])), 0
     # get temporarily dilated mask
     if margin>0:
-        dilated_mask = binary_dilate(mask, margin, type='1', scale=1.)
+        dilated_mask = mask.copy() # TODO: TURNED OFF ANYWAY
+        #dilated_mask = binary_dilate(mask, margin, type='1', scale=1.)
     elif margin == 0:
         dilated_mask = mask.copy()
     # get a list of available coordinates
@@ -101,7 +101,7 @@ def find_available_coordinates(mask, margin):
 
 
 def make_snake(image, mask,
-               num_segments, segment_length, thickness, margin, continuity,
+               num_segments, segment_length, thickness, margin, continuity, small_dilation_structs, large_dilation_structs,
                contrast_list,
                max_segment_trial, aa_scale,
                display_snake = False, display_segment = False,
@@ -120,7 +120,7 @@ def make_snake(image, mask,
         contrast = contrast_list[contrast_index]
         current_image, current_mask, current_segment_mask, current_pivot, current_orientation, success \
         = seed_snake(current_image, current_mask,
-                     max_segment_trial,segment_length, thickness, margin, contrast,
+                     max_segment_trial,segment_length, thickness, margin, contrast,  small_dilation_structs, large_dilation_structs,
                      aa_scale= aa_scale, display=display_segment, stop_with_availability=stop_with_availability)
         if success is False:
             return image, mask, False
@@ -134,7 +134,7 @@ def make_snake(image, mask,
         current_image, current_mask, current_segment_mask, current_pivot, current_orientation, success \
         = extend_snake(list(current_pivot), current_orientation, current_segment_mask,
                          current_image, current_mask, max_segment_trial,
-                         segment_length, thickness, margin, continuity, contrast,
+                         segment_length, thickness, margin, continuity, contrast,  small_dilation_structs, large_dilation_structs,
                          aa_scale = aa_scale,
                          display=display_segment,
                          forced_current_pivot=None)
@@ -157,7 +157,7 @@ def make_snake(image, mask,
 
 # last_pivot: coordinate of the anchor of two segments ago
 def seed_snake(image, mask,
-               max_segment_trial, length, thickness, margin, contrast,
+               max_segment_trial, length, thickness, margin, contrast,  small_dilation_structs, large_dilation_structs,
                aa_scale, display = False, stop_with_availability=None):
 
     struct_shape = ((length+margin)*2+1, (length+margin)*2+1)
@@ -172,7 +172,7 @@ def seed_snake(image, mask,
             sampled_orientation_in_rad_reversed = sampled_orientation_in_rad - np.pi
 
         # generate dilation struct
-        _, struct = draw_line_n_mask(struct_shape, struct_head, sampled_orientation_in_rad, length, thickness, margin, aa_scale)
+        _, struct = draw_line_n_mask(struct_shape, struct_head, sampled_orientation_in_rad, length, thickness, margin, large_dilation_structs, aa_scale)
             # head-centric struct
 
         # dilate mask using segment
@@ -181,7 +181,7 @@ def seed_snake(image, mask,
         lined_mask[-1,:] = 1
         lined_mask[:,0] = 1
         lined_mask[:,-1] = 1
-        dilated_mask = binary_dilate_custom(lined_mask, struct, iterations=1, scale=1.)
+        dilated_mask = binary_dilate_custom(lined_mask, struct, value_scale=1.)
             # dilation in the same orientation as the tail
 
         # run coordinate searcher while also further dilating
@@ -213,7 +213,7 @@ def seed_snake(image, mask,
     if trial_count > max_segment_trial:
         return image, mask, np.zeros_like(mask), None, None, False
 
-    l_im, m_im = draw_line_n_mask((mask.shape[0], mask.shape[1]), sampled_tail, sampled_orientation_in_rad, length, thickness, margin, aa_scale, contrast_scale=contrast)
+    l_im, m_im = draw_line_n_mask((mask.shape[0], mask.shape[1]), sampled_tail, sampled_orientation_in_rad, length, thickness, margin, large_dilation_structs, aa_scale, contrast_scale=contrast)
     image = np.maximum(image, l_im)
 
     if display:
@@ -234,7 +234,7 @@ def seed_snake(image, mask,
 # last_pivot: coordinate of the anchor of two segments ago
 def extend_snake(last_pivot, last_orientation, last_segment_mask,
                  image, mask, max_segment_trial,
-                 length, thickness, margin, continuity, contrast,
+                 length, thickness, margin, continuity, contrast, small_dilation_structs, large_dilation_structs,
                  aa_scale,
                  display = False,
                  forced_current_pivot=None):
@@ -244,7 +244,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
     else:
         new_pivot = translate_coord(last_pivot, last_orientation, length+2*margin)
     # get temporarily dilated mask
-    dilated_mask = binary_dilate(mask, margin+1, type='2', scale=1.)
+    dilated_mask = binary_dilate_custom(mask, small_dilation_structs, value_scale=1.)
     # get candidate endpoints
     unique_coords, unique_orientations, cmf, pmf = get_coords_cmf(new_pivot, last_orientation, length+margin, dilated_mask, continuity)
     # sample endpoint
@@ -259,7 +259,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
             new_orientation = unique_orientations[sampled_index]
             new_head = unique_coords[sampled_index, :]  # find the smallest index whose value is greater than rand
             flipped_orientation = flip_by_pi(new_orientation)
-            l_im, m_im = draw_line_n_mask((mask.shape[0],mask.shape[1]), new_head, flipped_orientation, length, thickness, margin, aa_scale, contrast_scale=contrast)
+            l_im, m_im = draw_line_n_mask((mask.shape[0],mask.shape[1]), new_head, flipped_orientation, length, thickness, margin, large_dilation_structs, aa_scale, contrast_scale=contrast)
             trial_count += 1
             if np.max(mask+m_im) < 1.8:
                 segment_found = True
@@ -341,7 +341,7 @@ def get_coords_cmf(last_endpoint, last_orientation, step_length, mask, continuit
     return unique_coords, unique_orientations, cmf, pmf
 
 
-def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margin, aa_scale, contrast_scale=1.0):
+def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margin, large_dilation_struct, aa_scale, contrast_scale=1.0):
     # sanity check
     if np.round(thickness*aa_scale) - thickness*aa_scale != 0.0:
         raise ValueError('thickness does not break even.')
@@ -366,7 +366,7 @@ def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margi
         miniline_im *= contrast_scale
 
     # draw a mask
-    minimask_blown_im = binary_dilate(miniline_blown_im, margin*aa_scale, type='1', scale=1.).astype(np.uint8)
+    minimask_blown_im = binary_dilate_custom(miniline_blown_im, large_dilation_struct, value_scale=1.).astype(np.uint8)
     minimask_im = scipy.misc.imresize(np.array(minimask_blown_im),
                         (miniline_shape, miniline_shape),
                         interp='lanczos').astype(np.float) / 255
@@ -400,21 +400,18 @@ def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margi
     return l_im, m_im
 
 
-def binary_dilate(im, iterations, type='1', scale=1.):
-    if type == '1':
-        struct = ndimage.generate_binary_structure(2, 1)
-    elif type == '2':
-        struct = ndimage.generate_binary_structure(2, 2)
-    #out = ndimage.morphology.binary_dilation(np.array(im), structure=struct, iterations=1)
-    out = np.array(cv2.dilate(np.array(im), kernel=struct.astype(np.uint8), iterations = iterations)).astype(float)/scale
+def binary_dilate_custom(im, struct, value_scale=1.):
+    #out = ndimage.morphology.binary_dilation(np.array(im), structure=struct, iterations=iterations)
+    out = np.array(cv2.dilate(np.array(im), kernel=struct.astype(np.uint8), iterations = 1)).astype(float)/value_scale
     #out = np.minimum(signal.fftconvolve(np.array(im), struct, mode='same').astype(np.uint8), np.ones_like(im))
     return out
 
-def binary_dilate_custom(im, struct, iterations, scale=1.):
-    #out = ndimage.morphology.binary_dilation(np.array(im), structure=struct, iterations=iterations)
-    out = np.array(cv2.dilate(np.array(im), kernel=struct.astype(np.uint8), iterations = iterations)).astype(float)/scale
-    #out = np.minimum(signal.fftconvolve(np.array(im), struct, mode='same').astype(np.uint8), np.ones_like(im))
-    return out
+def generate_dilation_struct(margin):
+    kernel = np.zeros((2 * margin + 1, 2 * margin + 1))
+    y, x = np.ogrid[-margin:margin + 1, -margin:margin + 1]
+    mask = x ** 2 + y ** 2 <= margin ** 2
+    kernel[mask] = 1
+    return kernel
 
 # translate a coordinate. orientation is in radian.
 # if allow_float, function returns exact coordinate (not rounded)
@@ -472,10 +469,17 @@ def imsum(im1, im2, bw='w'):
 def test():
     t = time.time()
 
+<<<<<<< HEAD
     target_paddle_length =12  # from 6 to 18
     distractor_paddle_length = target_paddle_length / 3
     num_distractor_paddles = int(33*(9./target_paddle_length)) #4
     continuity = 2.4 #1  # from 1 to 2.5 (expect occasional failures at high values)
+=======
+    target_paddle_length = 25 # from 8 to 25
+    distractor_paddle_length = target_paddle_length / 2
+    num_distractor_paddles = 6 #4
+    continuity = 1.5 #1  # from 1 to 2.5 (expect occasional failures at high values)
+>>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
 
     imsize = 256
     aa_scale = 4
