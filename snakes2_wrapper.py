@@ -54,6 +54,7 @@ args.n_images = total_images/num_machines
 
 dataset_root = '/media/data_cifs/curvy_2snakes/'
 args.antialias_scale = 4
+args.paddle_margin_list = [3]
 
 args.marker_radius = 3
 args.contour_length = 9 # from 9 to 18, with steps of 3

@@ -247,7 +247,7 @@ def test():
                    allow_shorter_snakes=False, stop_with_availability=None)
 
     ### SAMPLE SHORT SNAKE DISTRACTORS
-    num_distractor_snakes = 30/distractor_length
+    num_distractor_snakes = 40/distractor_length
     image, mask = snakes.make_many_snakes(image, mask,
                                        num_distractor_snakes, max_distractor_snake_retrial,
                                        distractor_length, segment_length, thickness, margin, continuity, contrast_list,
