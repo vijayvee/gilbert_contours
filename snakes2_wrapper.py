@@ -7,8 +7,8 @@ import snakes2
 class Args:
     def __init__(self,
                  contour_path = './contour', batch_id=0, n_images = 200000,
-                 window_size=[256,256], antialias_scale = 4,
-                 LABEL =1, seed_distance= 27, marker_radius = 4,
+                 window_size=[256,256], padding=22, antialias_scale = 4,
+                 LABEL =1, seed_distance= 27, marker_radius = 3,
                  contour_length=15, distractor_length=5, use_single_paddles=True,
                  max_target_contour_retrial = 4, max_distractor_contour_retrial = 4, max_paddle_retrial=2,
                  continuity = 1.4, paddle_length=5, paddle_thickness=1.5, paddle_margin_list=[4], paddle_contrast_list=[1.],
@@ -19,6 +19,7 @@ class Args:
         self.n_images = n_images
 
         self.window_size = window_size
+        self.padding = padding
         self.antialias_scale = antialias_scale
 
         self.LABEL = LABEL
@@ -53,6 +54,7 @@ args.n_images = total_images/num_machines
 
 dataset_root = '/home/jk/curvy_2snakes/'
 
+args.marker_radius = 3
 args.contour_length = 9 # from 9 to 18, with steps of 3
 args.antialias_scale = 2
 args.continuity = 1.8  # from 2.7, 1.8, 1.2, 0.8, 0.6

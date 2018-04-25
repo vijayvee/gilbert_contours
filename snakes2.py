@@ -333,8 +333,8 @@ def from_wrapper(args):
         ### SAMPLE TWO TARGET SNAKES
         success = False
         while not success:
-            image, mask, origin_centers, terminal_centers, success = \
-                two_snakes(args.window_size, args.seed_distance,
+            image, mask, origin_tips, terminal_tips, success = \
+                two_snakes(args.window_size, args.padding, args.seed_distance,
                            args.contour_length, args.paddle_length, args.paddle_thickness, margin, args.continuity,
                            small_dilation_structs, large_dilation_structs,
                            args.paddle_contrast_list,
@@ -379,8 +379,8 @@ def from_wrapper(args):
         else:
             origin_mark_idx = np.random.randint(0, 2)
             terminal_mark_idx = origin_mark_idx
-        origin_mark_coord = origin_centers[origin_mark_idx]
-        terminal_mark_coord = terminal_centers[terminal_mark_idx]
+        origin_mark_coord = origin_tips[origin_mark_idx]
+        terminal_mark_coord = terminal_tips[terminal_mark_idx]
         markers = np.maximum(draw_circle(args.window_size, origin_mark_coord, args.marker_radius, args.antialias_scale),
                              draw_circle(args.window_size, terminal_mark_coord, args.marker_radius, args.antialias_scale)).astype(np.float) / 255
         image_marked = np.maximum(image, markers)
