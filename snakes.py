@@ -131,7 +131,7 @@ def make_snake(image, mask,
         else:
             contrast_index = 0
         contrast = contrast_list[contrast_index]
-        current_image, current_mask, current_segment_mask, current_pivot, current_orientation, success \
+        current_image, current_mask, current_segment_mask, current_pivot, current_orientation, _, success \
         = extend_snake(list(current_pivot), current_orientation, current_segment_mask,
                          current_image, current_mask, max_segment_trial,
                          segment_length, thickness, margin, continuity, contrast,  small_dilation_structs, large_dilation_structs,
@@ -249,7 +249,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
     unique_coords, unique_orientations, cmf, pmf = get_coords_cmf(new_pivot, last_orientation, length+margin, dilated_mask, continuity)
     # sample endpoint
     if pmf is None:
-        return image, mask, None, None, None, False
+        return image, mask, None, None, None, None, False
     else:
         trial_count = 0
         segment_found = False
@@ -260,6 +260,9 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
             new_head = unique_coords[sampled_index, :]  # find the smallest index whose value is greater than rand
             flipped_orientation = flip_by_pi(new_orientation)
             l_im, m_im = draw_line_n_mask((mask.shape[0],mask.shape[1]), new_head, flipped_orientation, length, thickness, margin, large_dilation_structs, aa_scale, contrast_scale=contrast)
+            center = translate_coord(new_head, flipped_orientation, length, allow_float=True)
+            center = [int(np.round_(center[0])), int(np.round_(center[1]))]
+
             trial_count += 1
             if np.max(mask+m_im) < 1.8:
                 segment_found = True
@@ -285,7 +288,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
                 plt.plot(new_pivot[1],new_pivot[0], 'go')
                 plt.plot(new_head[1], new_head[0], 'ro')
                 plt.show()
-            return image, mask, None, None, None, False
+            return image, mask, None, None, None, None, False
         else:
             image = np.maximum(image, l_im)
             mask = np.maximum(mask, last_segment_mask)
@@ -297,7 +300,7 @@ def extend_snake(last_pivot, last_orientation, last_segment_mask,
                 plt.plot(new_pivot[1],new_pivot[0], 'go')
                 plt.plot(new_head[1], new_head[0], 'ro')
                 plt.show()
-            return image, mask, m_im, new_pivot, new_orientation, True
+            return image, mask, m_im, new_pivot, new_orientation, center, True
 
 
 # given the coordinate (y,x) of the last_endpoint and a fixed radius and a mask,
@@ -469,17 +472,10 @@ def imsum(im1, im2, bw='w'):
 def test():
     t = time.time()
 
-<<<<<<< HEAD
     target_paddle_length =12  # from 6 to 18
     distractor_paddle_length = target_paddle_length / 3
     num_distractor_paddles = int(33*(9./target_paddle_length)) #4
     continuity = 2.4 #1  # from 1 to 2.5 (expect occasional failures at high values)
-=======
-    target_paddle_length = 25 # from 8 to 25
-    distractor_paddle_length = target_paddle_length / 2
-    num_distractor_paddles = 6 #4
-    continuity = 1.5 #1  # from 1 to 2.5 (expect occasional failures at high values)
->>>>>>> 2ab77cba1cd8d2b750989e6fb837be66c35408b9
 
     imsize = 256
     aa_scale = 4
