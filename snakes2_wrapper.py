@@ -52,7 +52,8 @@ args.batch_id = start_id + int(sys.argv[3]) - 1
 total_images = int(sys.argv[4])
 args.n_images = total_images/num_machines
 
-dataset_root = '/home/jk/curvy_2snakes/'
+dataset_root = '/media/data_cifs/curvy_2snakes/'
+args.antialias_scale = 4
 
 args.marker_radius = 3
 args.contour_length = 9 # from 9 to 18, with steps of 3
@@ -72,31 +73,31 @@ args.LABEL = 0
 #snakes2.from_wrapper(args)
 
 ################################# DS: snake length
-for cl in [6, 18]:
+for cl in [18]: #[6, 18]:
     args.contour_length = cl
     args.distractor_length = cl/3
     dataset_subpath = 'curv_contour_length_' + str(cl)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    # snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
     dataset_subpath = 'curv_contour_length_' + str(cl) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    # snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
 args.contour_length = 9
 args.distractor_length = 3
 
 ################################# DS: snake inter-paddle continuity
-for ct in [2.7, 0.6]:
+for ct in [0.6]: #[2.7, 0.6]:
     args.continuity = ct
     dataset_subpath = 'curv_continuity_' + str(ct)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    #snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
     dataset_subpath = 'curv_continuity_' + str(ct) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    #snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
 args.continuity = 2.5
 
 ################################# DS: (REST OF THE 2-way MATRIX)
@@ -111,12 +112,12 @@ for cl in [6, 12, 15, 18]:
             dataset_subpath = 'curv_continuity_' + str(ct) + '_length_' + str(cl)
             args.contour_path = os.path.join(dataset_root, dataset_subpath)
             args.LABEL = 1
-            snakes2.from_wrapper(args)
+            # snakes2.from_wrapper(args)
             # NEG
             dataset_subpath = 'curv_continuity_' + str(ct) + '_length_' + str(cl) + '_neg'
             args.contour_path = os.path.join(dataset_root, dataset_subpath)
             args.LABEL = 0
-            snakes2.from_wrapper(args)
+            # snakes2.from_wrapper(args)
         else:
             print('not implemented.')
 
