@@ -74,7 +74,7 @@ args.LABEL = 0
 #snakes2.from_wrapper(args)
 
 ################################# DS: snake length
-for cl in [18]: #[6, 18]:
+for cl in [12]: #[6, 18]:
     args.contour_length = cl
     args.distractor_length = cl/3
     dataset_subpath = 'curv_contour_length_' + str(cl)
@@ -94,11 +94,11 @@ for ct in [0.6]: #[2.7, 0.6]:
     dataset_subpath = 'curv_continuity_' + str(ct)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    snakes2.from_wrapper(args)
+    #snakes2.from_wrapper(args)
     dataset_subpath = 'curv_continuity_' + str(ct) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    snakes2.from_wrapper(args)
+    #snakes2.from_wrapper(args)
 args.continuity = 2.5
 
 ################################# DS: (REST OF THE 2-way MATRIX)
