@@ -56,10 +56,11 @@ dataset_root = '/media/data_cifs/curvy_2snakes/'
 args.antialias_scale = 4
 args.paddle_margin_list = [3]
 
+args.window_size = [300,300]
 args.marker_radius = 3
-args.contour_length = 9 # from 9 to 18, with steps of 3
+args.contour_length = 6 # from 6 to 14, with steps of 50%
 args.antialias_scale = 2
-args.continuity = 1.8  # from 2.7, 1.8, 1.2, 0.8, 0.6
+args.continuity = 1.8  # from 1.8 to 0.8, with steps of 66%
 args.distractor_length = args.contour_length / 3
 args.use_single_paddles = False
 
@@ -67,14 +68,14 @@ args.use_single_paddles = False
 dataset_subpath = 'curv_baseline'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 args.LABEL = 1
-#snakes2.from_wrapper(args)
+snakes2.from_wrapper(args)
 dataset_subpath = 'curv_baseline_neg'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 args.LABEL = 0
-#snakes2.from_wrapper(args)
+snakes2.from_wrapper(args)
 
 ################################# DS: snake length
-for cl in [12]: #[6, 18]:
+for cl in [9, 14]: #[6, 18]:
     args.contour_length = cl
     args.distractor_length = cl/3
     dataset_subpath = 'curv_contour_length_' + str(cl)
@@ -85,11 +86,11 @@ for cl in [12]: #[6, 18]:
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
     snakes2.from_wrapper(args)
-args.contour_length = 9
-args.distractor_length = 3
+args.contour_length = 6
+args.distractor_length = 2
 
 ################################# DS: snake inter-paddle continuity
-for ct in [0.6]: #[2.7, 0.6]:
+for ct in [1.2, 0.8]: #[2.7, 0.6]:
     args.continuity = ct
     dataset_subpath = 'curv_continuity_' + str(ct)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
@@ -99,7 +100,7 @@ for ct in [0.6]: #[2.7, 0.6]:
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
     #snakes2.from_wrapper(args)
-args.continuity = 2.5
+args.continuity = 1.8
 
 ################################# DS: (REST OF THE 2-way MATRIX)
 # NOT IMPLEMENTED YET
