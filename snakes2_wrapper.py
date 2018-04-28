@@ -68,11 +68,11 @@ args.use_single_paddles = False
 dataset_subpath = 'curv_baseline'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 args.LABEL = 1
-snakes2.from_wrapper(args)
+#snakes2.from_wrapper(args)
 dataset_subpath = 'curv_baseline_neg'
 args.contour_path = os.path.join(dataset_root, dataset_subpath)
 args.LABEL = 0
-snakes2.from_wrapper(args)
+#snakes2.from_wrapper(args)
 
 ################################# DS: snake length
 for cl in [9, 14]: #[6, 18]:
@@ -81,11 +81,11 @@ for cl in [9, 14]: #[6, 18]:
     dataset_subpath = 'curv_contour_length_' + str(cl)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    snakes2.from_wrapper(args)
+    #snakes2.from_wrapper(args)
     dataset_subpath = 'curv_contour_length_' + str(cl) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    snakes2.from_wrapper(args)
+    #snakes2.from_wrapper(args)
 args.contour_length = 6
 args.distractor_length = 2
 
@@ -95,11 +95,11 @@ for ct in [1.2, 0.8]: #[2.7, 0.6]:
     dataset_subpath = 'curv_continuity_' + str(ct)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    #snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
     dataset_subpath = 'curv_continuity_' + str(ct) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    #snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
 args.continuity = 1.8
 
 ################################# DS: (REST OF THE 2-way MATRIX)
