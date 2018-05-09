@@ -52,17 +52,17 @@ args.batch_id = start_id + int(sys.argv[3]) - 1
 total_images = int(sys.argv[4])
 args.n_images = total_images/num_machines
 
-dataset_root = '/media/data_cifs/curvy_2snakes_300_cont1.2_cluttered/'
+dataset_root = '/media/data_cifs/curvy_2snakes_300_cont0.9/'
 args.antialias_scale = 4
 args.paddle_margin_list = [3]
 
 args.window_size = [300,300]
 args.marker_radius = 3
-args.contour_length = 6 # from 6 to 14, with steps of 50%
+args.contour_length = 9 # from 6 to 14, with steps of 50%
 args.antialias_scale = 2
 args.continuity = 1.2  # from 1.8 to 0.8, with steps of 66%
 args.distractor_length = args.contour_length / 3
-args.use_single_paddles = True
+args.use_single_paddles = False
 
 ################################# DS: BASELINE
 dataset_subpath = 'curv_baseline'
