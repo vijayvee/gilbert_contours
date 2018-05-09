@@ -60,7 +60,7 @@ args.window_size = [300,300]
 args.marker_radius = 3
 args.contour_length = 9 # from 6 to 14, with steps of 50%
 args.antialias_scale = 2
-args.continuity = 1.2  # from 1.8 to 0.8, with steps of 66%
+args.continuity = 0.9  # from 1.8 to 0.8, with steps of 66%
 args.distractor_length = args.contour_length / 3
 args.use_single_paddles = False
 
