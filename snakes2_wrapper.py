@@ -60,7 +60,7 @@ args.window_size = [300,300]
 args.marker_radius = 3
 args.contour_length = 9 # from 6 to 14, with steps of 50%
 args.antialias_scale = 2
-args.continuity = 0.9  # from 1.8 to 0.8, with steps of 66%
+args.continuity = 0.8  # from 1.8 to 0.8, with steps of 66%
 args.distractor_length = args.contour_length / 3
 args.use_single_paddles = False
 
@@ -81,11 +81,11 @@ for cl in [9]: #[9, 14]:
     dataset_subpath = 'curv_contour_length_' + str(cl)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    snakes2.from_wrapper(args)
+    # snakes2.from_wrapper(args)
     dataset_subpath = 'curv_contour_length_' + str(cl) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    snakes2.from_wrapper(args)
+    # snakes2.from_wrapper(args)
 args.contour_length = 6
 args.distractor_length = 2
 
