@@ -52,7 +52,7 @@ args.batch_id = start_id + int(sys.argv[3]) - 1
 total_images = int(sys.argv[4])
 args.n_images = total_images/num_machines
 
-dataset_root = '/media/data_cifs/curvy_2snakes_300_cont0.9/'
+dataset_root = '/media/data_cifs/curvy_2snakes_300_cont0.8/'
 args.antialias_scale = 4
 args.paddle_margin_list = [3]
 
