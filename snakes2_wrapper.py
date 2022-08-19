@@ -48,11 +48,11 @@ args = Args()
 ## Constraints
 num_machines = int(sys.argv[1])
 start_id = int(sys.argv[2])
-args.batch_id = start_id + int(sys.argv[3]) - 1
-total_images = int(sys.argv[4])
+args.batch_id = start_id #+ int(sys.argv[3]) - 1
+total_images = int(sys.argv[3])
 args.n_images = total_images/num_machines
 
-dataset_root = '/media/data_cifs/curvy_2snakes_300_cont0.8/'
+dataset_root = sys.argv[4]  #'/media/data_cifs/curvy_2snakes_300_cont0.8/'
 args.antialias_scale = 4
 args.paddle_margin_list = [3]
 
@@ -64,65 +64,18 @@ args.continuity = 0.8  # from 1.8 to 0.8, with steps of 66%
 args.distractor_length = args.contour_length / 3
 args.use_single_paddles = False
 
-################################# DS: BASELINE
-dataset_subpath = 'curv_baseline'
-args.contour_path = os.path.join(dataset_root, dataset_subpath)
-args.LABEL = 1
-snakes2.from_wrapper(args)
-dataset_subpath = 'curv_baseline_neg'
-args.contour_path = os.path.join(dataset_root, dataset_subpath)
-args.LABEL = 0
-snakes2.from_wrapper(args)
-
 ################################# DS: snake length
-for cl in [9]: #[9, 14]: 
+for cl in [18]: #[9, 14]: 
     args.contour_length = cl
     args.distractor_length = cl/3
     dataset_subpath = 'curv_contour_length_' + str(cl)
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 1
-    # snakes2.from_wrapper(args)
+    snakes2.from_wrapper(args)
     dataset_subpath = 'curv_contour_length_' + str(cl) + '_neg'
     args.contour_path = os.path.join(dataset_root, dataset_subpath)
     args.LABEL = 0
-    # snakes2.from_wrapper(args)
-args.contour_length = 6
-args.distractor_length = 2
-
-################################# DS: snake inter-paddle continuity
-for ct in [1.8, 0.8]:
-    args.continuity = ct
-    dataset_subpath = 'curv_continuity_' + str(ct)
-    args.contour_path = os.path.join(dataset_root, dataset_subpath)
-    args.LABEL = 1
-    # snakes2.from_wrapper(args)
-    dataset_subpath = 'curv_continuity_' + str(ct) + '_neg'
-    args.contour_path = os.path.join(dataset_root, dataset_subpath)
-    args.LABEL = 0
-    # snakes2.from_wrapper(args)
-args.continuity = 1.8
-
-################################# DS: (REST OF THE 2-way MATRIX)
-# NOT IMPLEMENTED YET
-for cl in [6, 12, 15, 18]:
-    for ct in [2.7, 1.2, 0.8, 0.6]:
-        if (cl==6) & (ct ==2.7):
-            args.continuity = ct
-            args.contour_length = cl
-            args.distractor_length = cl / 3
-            # POS
-            dataset_subpath = 'curv_continuity_' + str(ct) + '_length_' + str(cl)
-            args.contour_path = os.path.join(dataset_root, dataset_subpath)
-            args.LABEL = 1
-            # snakes2.from_wrapper(args)
-            # NEG
-            dataset_subpath = 'curv_continuity_' + str(ct) + '_length_' + str(cl) + '_neg'
-            args.contour_path = os.path.join(dataset_root, dataset_subpath)
-            args.LABEL = 0
-            # snakes2.from_wrapper(args)
-        else:
-            print('not implemented.')
-
+    snakes2.from_wrapper(args)
 
 elapsed = time.time() - t
 print('n_totl_imgs (per condition) : ', str(total_images))
