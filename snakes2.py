@@ -4,6 +4,7 @@ import sys, os
 sys.path.append(os.path.abspath(os.path.join('..')))
 
 import matplotlib.pyplot as plt
+import PIL
 
 from PIL import Image
 from PIL import ImageDraw
@@ -15,6 +16,17 @@ cv2.useOptimized()
 
 import snakes
 
+def imresize(arr, size):
+    norm01 = False
+    if int(arr.max()) == 1:
+        old_dtype = arr.dtype
+        norm01 = True
+        arr = (arr * 255).astype(np.uint8)
+    img = Image.fromarray(arr).resize(size, PIL.Image.LANCZOS)
+    npimg = np.array(img)
+    if norm01:
+        npimg = (npimg / 255).astype(old_dtype)
+    return npimg
 
 # Accumulate metadata
 def accumulate_meta(array, subpath, filename, args, nimg, paddle_margin = None):
@@ -203,8 +215,10 @@ def draw_circle(window_size, coordinate, radius, aa_scale):
     y, x = np.ogrid[-coordinate[0]*aa_scale:(window_size[0]-coordinate[0])*aa_scale,
                     -coordinate[1]*aa_scale:(window_size[1]-coordinate[1])*aa_scale]
     mask = x ** 2 + y ** 2 <= (radius*aa_scale) ** 2
-    image[mask] = 1
-    return scipy.misc.imresize(image, (window_size[0], window_size[1]), interp='lanczos')
+    # image[mask] = 1
+    image[mask] = 255
+    # return scipy.misc.imresize(image, (window_size[0], window_size[1]), interp='lanczos')
+    return imresize(image, (window_size[0], window_size[1]))
 
 def test():
     t = time.time()
@@ -281,7 +295,8 @@ def test():
     elapsed = time.time() - t
 
     plt.figure(figsize=(10, 10))
-    show2 = scipy.misc.imresize(image_marked, (imsize, imsize), interp='lanczos')
+    # show2 = scipy.misc.imresize(image_marked, (imsize, imsize), interp='lanczos')
+    show2 = imresize(image_marked, (imsize, imsize))
     plt.imshow(show2)
     plt.colorbar()
     plt.axis('off')
@@ -387,14 +402,22 @@ def from_wrapper(args):
 
         if (args.pause_display):
             plt.figure(figsize=(10, 10))
-            show2 = scipy.misc.imresize(image_marked, (args.window_size[0], args.window_size[1]), interp='lanczos')
+            # show2 = scipy.misc.imresize(image_marked, (args.window_size[0], args.window_size[1]), interp='lanczos')
+            show2 = imresize(image_marked, (args.window_size[0], args.window_size[1]))
             plt.imshow(show2)
             plt.colorbar()
             plt.axis('off')
             plt.show()
         if (args.save_images):
             fn = "sample_%s.png"%(iimg)
-            scipy.misc.imsave(os.path.join(args.contour_path, contour_sub_path, fn), image_marked)
+            # scipy.misc.imsave(os.path.join(args.contour_path, contour_sub_path, fn), image_marked)
+            print(image_marked.min(), image_marked.max(), image_marked.dtype)
+            image_marked = np.clip(image_marked, 0, 1)
+            image_marked = (image_marked * 255).astype(np.uint8)
+            print(image_marked.min(), image_marked.max(), image_marked.dtype)
+            pil_image_marked = Image.fromarray(image_marked)
+            pil_image_marked.save(os.path.join(args.contour_path, contour_sub_path, fn))
+            del pil_image_marked
         if (args.save_metadata):
             metadata = accumulate_meta(metadata, contour_sub_path, fn, args, iimg, paddle_margin=margin)
             ## TODO: GT IS NOT INCLUDED IN METADATA

@@ -3,14 +3,22 @@ import sys, os
 sys.path.append(os.path.abspath(os.path.join('..')))
 
 import matplotlib.pyplot as plt
+import PIL
 
 from PIL import Image
 from PIL import ImageDraw
 import scipy
+import scipy.misc
 from scipy import ndimage
 import time
 import cv2
 cv2.useOptimized()
+
+
+def imresize(arr, size):
+    img = Image.fromarray(arr).resize(size, PIL.Image.LANCZOS)
+    npimg = np.array(img)
+    return npimg
 
 def save_metadata(metadata, contour_path, batch_id):
     # Converts metadata (list of lists) into an nparray, and then saves
@@ -125,7 +133,7 @@ def make_snake(image, mask,
         if success is False:
             return image, mask, False
     # sequentially add segments
-    for isegment in range(num_segments-1):
+    for isegment in range(int(num_segments)-1):
         if num_possible_contrasts>0:
             contrast_index = np.random.randint(low=0, high=num_possible_contrasts)
         else:
@@ -360,17 +368,21 @@ def draw_line_n_mask(im_size, start_coord, orientation, length, thickness, margi
 
     # resize with interpolation + apply contrast
     miniline_shape = (length + int(np.ceil(thickness)) + margin) *2 + 1
-    miniline_im = scipy.misc.imresize(np.array(miniline_blown_im),
-                                      (miniline_shape, miniline_shape),
-                                      interp='lanczos').astype(np.float)/255
+    # miniline_im = scipy.misc.imresize(np.array(miniline_blown_im),
+    #                                  (miniline_shape, miniline_shape),
+    #                                  interp='lanczos').astype(np.float)/255
+    miniline_im = imresize(np.array(miniline_blown_im),
+			  (miniline_shape, miniline_shape)).astype(np.float)/255
     if contrast_scale != 1.0:
         miniline_im *= contrast_scale
 
     # draw a mask
     minimask_blown_im = binary_dilate_custom(miniline_blown_im, large_dilation_struct, value_scale=1.).astype(np.uint8)
-    minimask_im = scipy.misc.imresize(np.array(minimask_blown_im),
-                        (miniline_shape, miniline_shape),
-                        interp='lanczos').astype(np.float) / 255
+    # minimask_im = scipy.misc.imresize(np.array(minimask_blown_im),
+    #                    (miniline_shape, miniline_shape),
+    #                    interp='lanczos').astype(np.float) / 255
+    minimask_im = imresize(np.array(minimask_blown_im),
+                             (miniline_shape, miniline_shape)).astype(np.float) / 255
 
     #minimask_im = binary_dilate(miniline_im, margin, type='1', scale=1.).astype(np.uint8)
 
@@ -521,13 +533,15 @@ def test():
     plt.figure(figsize=(10, 10))
     plt.subplot(2, 1, 1)
     red_target = gray2red(image1)
-    show1 = scipy.misc.imresize(red_target, (imsize, imsize), interp='lanczos')
+    # show1 = scipy.misc.imresize(red_target, (imsize, imsize), interp='lanczos')
+    show1 = imresize(red_target, (imsize, imsize))
     plt.imshow(show1)
     plt.axis('off')
 
     plt.subplot(2, 1, 2)
     gray_total = gray2gray(1 - image3)
-    show2 = scipy.misc.imresize(gray_total, (imsize, imsize), interp='lanczos')
+    # show2 = scipy.misc.imresize(gray_total, (imsize, imsize), interp='lanczos')
+    show2 = imresize(gray_total, (imsize, imsize))
     plt.imshow(show2)
     plt.axis('off')
 
